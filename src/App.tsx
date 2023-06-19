@@ -21,7 +21,6 @@ function App() {
 
   useEffect(() => {
     musicContext.setIsPlaying(false);
-    console.log("acess token is ", accessToken);
   }, [accessToken]);
 
   return (

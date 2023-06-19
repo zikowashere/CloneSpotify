@@ -37,12 +37,8 @@ const Dashboard = () => {
 
   useEffect(() => {
     setElapsedMs(0);
-    console.log("====================================");
-    console.log("music play", musicPlay);
-    console.log("====================================");
     searchPlaylist.getPlayListUser();
     searchPlaylist.getEpisodesUser();
-    console.log("tracks dashboard are ", track.length);
   }, [musicPlay]);
 
   return (

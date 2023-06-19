@@ -73,9 +73,7 @@ export const useSearchTrackById = () => {
     }
   }
 
-  useEffect(() => {
-    console.log("La valeur actuelle de tracks :", track);
-  }, [track]);
+  useEffect(() => {}, [track]);
 
   return { getTrackByIdArtist, getTrackByPlayslist, getTopTrackByIdArtist };
 };

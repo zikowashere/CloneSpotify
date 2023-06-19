@@ -18,9 +18,6 @@ const Home = () => {
 
   useEffect(() => {
     searchPlaylist.getPlayListUser();
-    console.log("====================================");
-    console.log("result is", result);
-    console.log("====================================");
   }, [musicContext.isPlaying]);
 
   return (

@@ -11,7 +11,6 @@ const Tracks = () => {
 
   useEffect(() => {
     getCurrentState();
-    console.log("tracks are", trackArray);
   }, [track]);
   return (
     <div>

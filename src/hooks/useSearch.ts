@@ -42,7 +42,6 @@ export const useSearch = () => {
       headers: { Authorization: `Bearer ${accessToken}` },
     }).then((response) => {
       response.json().then(async (res) => {
-        console.log("episodes are", res);
         const userID = res.id;
       });
     });
@@ -59,9 +58,7 @@ export const useSearch = () => {
     });
   }
 
-  useEffect(() => {
-    console.log("playlist in hooks", search.playlist);
-  }, [search]);
+  useEffect(() => {}, [search]);
   return {
     searchKeyWord,
     search,

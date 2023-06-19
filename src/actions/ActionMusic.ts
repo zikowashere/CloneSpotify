@@ -15,9 +15,6 @@ export const ActionMusic = () => {
   } = useContext(contextMusic);
 
   const playTrack = async (track: object, elapsedMs: number) => {
-    console.log("====================================");
-    console.log("change it to ", elapsedMs);
-    console.log("====================================");
     setIsPlaying(true);
     setStopStratTrack(true);
     setMusicPlay(track);
@@ -55,11 +52,9 @@ export const ActionMusic = () => {
       method: "POST",
       headers: { Authorization: `Bearer ${accessToken}` },
     }).then((response) => {
-      if (response.ok) {
-        console.log("res here is ", response);
-      } else {
-        console.log("Impossible de passer à la piste suivante");
-      }
+      console.log("====================================");
+      console.log(response);
+      console.log("====================================");
     });
   };
 

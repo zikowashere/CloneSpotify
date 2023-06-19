@@ -6,7 +6,6 @@ const ChoiceSearchBar = () => {
   const InitializeDashboard = () => {
     track.setTrack([]);
     track.setShowPlaylist(false);
-    console.log("initialize", track.track);
   };
   return (
     <div

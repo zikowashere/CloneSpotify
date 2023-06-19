@@ -36,9 +36,6 @@ const PlayerTrack = ({ track, playOrStopTrack, durationTrack }: Props) => {
 
   useEffect(() => {
     let intervalId = 0;
-    console.log("====================================");
-    console.log("use effect elapsed time", elapsedMs);
-    console.log("====================================");
     if (stopStratTrack && elapsedMs < durationTrack) {
       intervalId = setInterval(() => {
         getCurrentState();

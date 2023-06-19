@@ -16,7 +16,6 @@ const Header = () => {
 
   useEffect(() => {
     keyword === "" && search.setSearch([]);
-    console.log("search is ", search.search);
   }, [search]);
 
   return (
