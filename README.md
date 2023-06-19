@@ -1,4 +1,5 @@
 Clone Spotify
+
 This project is a clone of the Spotify application, which aims to replicate some of Spotify's features. Before getting started, make sure to follow these steps:
 
 Prerequisites
