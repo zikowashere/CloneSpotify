@@ -1,4 +1,4 @@
-import { useContext, useEffect, useMemo } from "react";
+import { useContext, useEffect } from "react";
 import Header from "../components/Header";
 import { useSearch } from "../hooks/useSearch";
 import ChoiceSearchBar from "../components/ChoiceSearchBar";
