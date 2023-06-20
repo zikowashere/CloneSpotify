@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { API_CLIENT } from "../../env.config";
 import logo from "../assets/logo.png";
-import { useNavigate } from "react-router-dom";
+import { loginContext } from "../hooks/LoginContext";
 
 export default function Login() {
   const clientId = API_CLIENT;
@@ -9,10 +9,7 @@ export default function Login() {
   const urlParams = new URLSearchParams(window.location.search);
   const code = urlParams.get("code");
   const [isRedirect, setIsRedirect] = useState(true);
-  const navigate = useNavigate();
-  const acess_token = localStorage.getItem("access_token");
-
-  useEffect(() => {}, [acess_token]);
+  const logincontext = useContext(loginContext);
 
   function generateRandomString(length: number) {
     let text = "";
@@ -108,6 +105,7 @@ export default function Login() {
       })
       .then((data) => {
         localStorage.setItem("access_token", data.access_token);
+        window.location.href = "http://localhost:5173/";
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -122,7 +120,7 @@ export default function Login() {
       setIsRedirect(false);
       setToken(code);
     }
-  }, []);
+  }, [code]);
 
   return (
     <div>

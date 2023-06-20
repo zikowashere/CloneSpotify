@@ -1,5 +1,4 @@
 import { useSearchTrackById } from "../hooks/useSearchTracksByid";
-import { useNavigate } from "react-router-dom";
 
 type Props = {
   imagePlaylsit: string;

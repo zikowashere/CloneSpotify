@@ -1,9 +1,5 @@
-import React, { useEffect } from "react";
-import spotifyPlayer from "../assets/SpotifyPlayButton.png";
+import React from "react";
 import { useSearchTrackById } from "../hooks/useSearchTracksByid";
-import { Link, useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { TrackContext } from "../hooks/SearchTracksByArtistContext";
 
 type Props = {
   imageArtist: string;
@@ -13,7 +9,6 @@ type Props = {
 
 const ArtistCard = ({ imageArtist, title, idArtist }: Props) => {
   const { getTrackByIdArtist } = useSearchTrackById();
-  const navigate = useNavigate();
 
   const TracksByArtistId = async () => {
     try {

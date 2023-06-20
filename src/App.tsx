@@ -1,49 +1,38 @@
 import "./App.css";
 import Login from "./pages/Login.jsx";
 import Dashboard from "./pages/Dashboard";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { SearchProvider } from "./hooks/SearchContext";
 import "./App.css";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import {
-  TrackContext,
-  TrackProvider,
-} from "./hooks/SearchTracksByArtistContext";
-import Tracks from "./pages/Tracks";
-import TrackPlaylist from "./pages/TrackPlaylist";
+import { BrowserRouter } from "react-router-dom";
+import { TrackProvider } from "./hooks/SearchTracksByArtistContext";
 import { MusicPlayProvider, contextMusic } from "./hooks/MusicPlayContext";
-import PlayerTrack from "./components/PlayerTrack";
-import { ActionMusic } from "./actions/ActionMusic";
+import Callback from "./pages/Callback";
 
 function App() {
-  const accessToken = localStorage.getItem("access_token");
-  const musicContext = useContext(contextMusic);
+  const [accessToken, setAccessToken] = useState(
+    localStorage.getItem("access_token") || ""
+  );
 
   useEffect(() => {
-    musicContext.setIsPlaying(false);
-  }, [accessToken]);
+    const handleStorageChange = () => {
+      const newAccessToken = localStorage.getItem("access_token") || "";
+      setAccessToken(newAccessToken);
+    };
 
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
   return (
     <div style={{ backgroundColor: "black" }}>
       <BrowserRouter>
         <MusicPlayProvider>
           <TrackProvider>
             <SearchProvider>
-              <Routes>
-                <Route
-                  path="/dashboard"
-                  element={
-                    <SearchProvider>
-                      <Dashboard />
-                    </SearchProvider>
-                  }
-                />
-                <Route path="/" element={<Login />} />
-                <Route
-                  path="callback"
-                  element={accessToken ? <Dashboard /> : <Login />}
-                />
-              </Routes>
+              <Callback />
             </SearchProvider>
           </TrackProvider>
         </MusicPlayProvider>
