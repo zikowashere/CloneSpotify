@@ -10,22 +10,6 @@ import { MusicPlayProvider, contextMusic } from "./hooks/MusicPlayContext";
 import Callback from "./pages/Callback";
 
 function App() {
-  const [accessToken, setAccessToken] = useState(
-    localStorage.getItem("access_token") || ""
-  );
-
-  useEffect(() => {
-    const handleStorageChange = () => {
-      const newAccessToken = localStorage.getItem("access_token") || "";
-      setAccessToken(newAccessToken);
-    };
-
-    window.addEventListener("storage", handleStorageChange);
-
-    return () => {
-      window.removeEventListener("storage", handleStorageChange);
-    };
-  }, []);
   return (
     <div style={{ backgroundColor: "black" }}>
       <BrowserRouter>
