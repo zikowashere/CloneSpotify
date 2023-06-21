@@ -16,7 +16,7 @@ const Header = () => {
 
   useEffect(() => {
     keyword === "" && search.setSearch([]);
-  }, [keyword]);
+  }, [search.search]);
 
   return (
     <div style={headerStyle.styleHeader}>
