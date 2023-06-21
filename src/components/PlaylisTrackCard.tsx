@@ -1,18 +1,20 @@
 import spotifyPlayer from "../assets/Images/SpotifyPlayButton.png";
 import { ActionMusic } from "../actions/ActionMusic";
+import React, { useContext } from "react";
+import { track } from "../types/track";
+import { contextMusic } from "../hooks/MusicPlayContext";
 
 type Props = {
   imageArtist: string;
   artistName?: string;
   title: string;
   uri: string;
-  track: object;
+  track: track;
 };
 
 const PlaylisTrackCard = ({ title, uri, artistName, track }: Props) => {
-  console.log(" track is: ", track);
-
-  const { playMusicAlbum } = ActionMusic();
+  const { elapsedMs } = useContext(contextMusic);
+  const { playTrack } = ActionMusic();
   return (
     <div
       style={{
@@ -70,7 +72,7 @@ const PlaylisTrackCard = ({ title, uri, artistName, track }: Props) => {
               cursor: "pointer",
               border: "none",
             }}
-            onClick={() => playMusicAlbum(track)}
+            onClick={() => playTrack(track, elapsedMs)}
           >
             <img
               style={{

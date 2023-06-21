@@ -1,8 +1,6 @@
-import { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { API_CLIENT } from "../../env.config";
 import logo from "../assets/Images/logo.png";
-import { loginContext } from "../hooks/LoginContext";
-import React from "react";
 
 export default function Login() {
   const clientId = API_CLIENT;
@@ -11,7 +9,6 @@ export default function Login() {
   const urlParams = new URLSearchParams(window.location.search);
   const code = urlParams.get("code");
   const [isRedirect, setIsRedirect] = useState(true);
-  const logincontext = useContext(loginContext);
 
   function generateRandomString(length: number) {
     let text = "";
@@ -82,7 +79,50 @@ export default function Login() {
     });
   }
 
-  function setToken(code: string) {
+  async function refreshToken(refreshToken) {
+    const codeVerifier = localStorage.getItem("code_verifier");
+    const body = new URLSearchParams({
+      grant_type: "refresh_token",
+      refresh_token: refreshToken,
+      client_id: clientId,
+      code_verifier: codeVerifier,
+    });
+
+    const response = await fetch("https://accounts.spotify.com/api/token", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+      },
+      body: body,
+    });
+
+    if (!response.ok) {
+      throw new Error("HTTP status " + response.status);
+    }
+
+    const data = await response.json();
+    localStorage.setItem("access_token", data.access_token);
+  }
+
+  useEffect(() => {
+    if (code && isRedirect) {
+      setIsRedirect(false);
+      setToken(code);
+    } else {
+      const storedRefreshToken = localStorage.getItem("refresh_token");
+      if (storedRefreshToken) {
+        refreshToken(storedRefreshToken)
+          .then(() => {
+            window.location.href = redirectAfterAuthtentication;
+          })
+          .catch((error) => {
+            console.error("Erreur lors du rafraîchissement du jeton :", error);
+          });
+      }
+    }
+  }, [code]);
+
+  async function setToken(code) {
     const code_verifier = localStorage.getItem("code_verifier");
     const body = new URLSearchParams({
       grant_type: "authorization_code",
@@ -92,37 +132,26 @@ export default function Login() {
       code_verifier: code_verifier,
     });
 
-    const response = fetch("https://accounts.spotify.com/api/token", {
+    const response = await fetch("https://accounts.spotify.com/api/token", {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
       },
       body: body,
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("HTTP status " + response.status);
-        }
-        return response.json();
-      })
-      .then((data) => {
-        localStorage.setItem("access_token", data.access_token);
-        window.location.href = redirectAfterAuthtentication;
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-  }
+    });
 
+    if (!response.ok) {
+      throw new Error("HTTP status " + response.status);
+    }
+
+    const data = await response.json();
+    localStorage.setItem("access_token", data.access_token);
+    localStorage.setItem("refresh_token", data.refresh_token);
+    window.location.href = redirectAfterAuthtentication;
+  }
   async function connect() {
     await login();
   }
-  useEffect(() => {
-    if (code && isRedirect) {
-      setIsRedirect(false);
-      setToken(code);
-    }
-  }, [code]);
 
   return (
     <div>
