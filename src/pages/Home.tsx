@@ -1,13 +1,8 @@
 import { useContext, useEffect } from "react";
-import ArtistCard from "../components/ArtistCard";
 import { SearchContext } from "../hooks/SearchContext";
 import { useSearch } from "../hooks/useSearch";
-import PlaylistCard from "../components/PlaylistCard";
 import TopFollowedArtist from "../components/TopFollowedArtist";
 import { contextMusic } from "../hooks/MusicPlayContext";
-import Tracks from "./Tracks";
-import { useSearchTrackById } from "../hooks/useSearchTracksByid";
-import { TrackContext } from "../hooks/SearchTracksByArtistContext";
 import BestResult from "../components/BestResult";
 
 const Home = () => {

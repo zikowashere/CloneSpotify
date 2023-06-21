@@ -1,17 +1,18 @@
 import { useContext, useEffect } from "react";
-import Header from "../components/Header";
 import { useSearch } from "../hooks/useSearch";
 import ChoiceSearchBar from "../components/ChoiceSearchBar";
 import { contextMusic } from "../hooks/MusicPlayContext";
 import PlayerTrack from "../components/PlayerTrack";
 import { ActionMusic } from "../actions/ActionMusic";
 import { TrackContext } from "../hooks/SearchTracksByArtistContext";
+import Header from "../components/Header";
 import Home from "./Home";
 import Tracks from "./Tracks";
 import SideBar from "../components/SideBar";
 import Playlists from "../components/Playlists";
 import TrackPlaylist from "./TrackPlaylist";
 import Episodes from "../components/Episodes";
+import React from "react";
 
 const Dashboard = () => {
   const searchPlaylist = useSearch();
@@ -120,7 +121,7 @@ const Dashboard = () => {
           <PlayerTrack
             track={musicPlay}
             playOrStopTrack={playMusicOrStop}
-            durationTrack={musicPlay.duration_ms}
+            durationTrack={musicPlay!.duration_ms}
           />
         )}
       </div>

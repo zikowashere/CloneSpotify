@@ -73,6 +73,7 @@ export const useSearchTrackById = () => {
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   useEffect(() => {}, [track]);
 
   return { getTrackByIdArtist, getTrackByPlayslist, getTopTrackByIdArtist };

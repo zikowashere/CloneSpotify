@@ -8,9 +8,10 @@ import { contextMusic } from "../hooks/MusicPlayContext";
 import ProgressBar from "./ProgressBar";
 import { formatTime } from "../../global";
 import { TrackContext } from "../hooks/SearchTracksByArtistContext";
+import { track } from "../types/track";
 
 type Props = {
-  track: object;
+  track: track | undefined;
   durationTrack: number;
   playOrStopTrack: () => void;
 };
@@ -23,15 +24,14 @@ const PlayerTrack = ({ track, playOrStopTrack, durationTrack }: Props) => {
     setStopStratTrack,
     setElapsedMs,
   } = useContext(contextMusic);
-  const { backTrack, nextTrack, getCurrentPlaybackTime, getCurrentState } =
-    ActionMusic();
+  const { backTrack, nextTrack, getCurrentState } = ActionMusic();
   const [durationTime, setDurationTime] = useState<string | undefined>("0:00");
   const [durationOfTrack, setDurationOfTrack] = useState<string>();
 
   useMemo(() => {
     setElapsedMs(0);
     setDurationOfTrack(formatTime(durationTrack));
-    setImagePlayerTrack(musicPlay.album.images[0].url);
+    setImagePlayerTrack(musicPlay!.album.images[0].url);
   }, [track?.name]);
 
   useEffect(() => {
@@ -74,7 +74,7 @@ const PlayerTrack = ({ track, playOrStopTrack, durationTrack }: Props) => {
             flexDirection: "column",
           }}
         >
-          <p style={{ color: "white" }}>{track.name}</p>
+          <p style={{ color: "white" }}>{track?.name}</p>
           <div
             style={{
               display: "flex",
@@ -83,7 +83,7 @@ const PlayerTrack = ({ track, playOrStopTrack, durationTrack }: Props) => {
               top: "50%",
             }}
           >
-            {track.artists.map((artist) => (
+            {track?.artists.map((artist) => (
               <p style={{ color: "grey", fontSize: "12px" }}>{artist.name}</p>
             ))}
           </div>

@@ -1,20 +1,26 @@
 import React, { Dispatch, ReactNode, SetStateAction, useState } from "react";
+import { track } from "../types/track";
 
 type Props = {
   children: ReactNode;
 };
 export type ContextTypeMusic = {
-  musicPlay: object;
+  musicPlay: track | undefined;
   isPlaying: boolean;
   stopStratTrack: boolean;
   elapsedMs: number;
-  setMusicPlay: Dispatch<SetStateAction<object>>;
+  setMusicPlay: Dispatch<SetStateAction<track | undefined>>;
   setIsPlaying: Dispatch<SetStateAction<boolean>>;
   setStopStratTrack: Dispatch<SetStateAction<boolean>>;
   setElapsedMs: Dispatch<SetStateAction<number>>;
 };
 export const contextMusic = React.createContext<ContextTypeMusic>({
-  musicPlay: {},
+  musicPlay: {
+    name: "",
+    album: { images: { url: "" }[""] },
+    uri: "",
+    duration_ms: 0,
+  },
   isPlaying: false,
   stopStratTrack: false,
   elapsedMs: 0,
@@ -32,7 +38,7 @@ export const contextMusic = React.createContext<ContextTypeMusic>({
   },
 });
 export const MusicPlayProvider = ({ children }: Props) => {
-  const [musicPlay, setMusicPlay] = useState({});
+  const [musicPlay, setMusicPlay] = useState<track | undefined>();
   const [isPlaying, setIsPlaying] = useState(false);
   const [stopStratTrack, setStopStratTrack] = useState(false);
   const [elapsedMs, setElapsedMs] = useState(0);

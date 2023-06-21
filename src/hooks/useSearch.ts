@@ -58,7 +58,6 @@ export const useSearch = () => {
     });
   }
 
-  useEffect(() => {}, [search]);
   return {
     searchKeyWord,
     search,

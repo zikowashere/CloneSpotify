@@ -2,10 +2,12 @@ import { useEffect, useState, useContext } from "react";
 import { API_CLIENT } from "../../env.config";
 import logo from "../assets/logo.png";
 import { loginContext } from "../hooks/LoginContext";
+import React from "react";
 
 export default function Login() {
   const clientId = API_CLIENT;
   const redirectUri = "http://localhost:5173/callback/";
+  const redirectAfterAuthtentication = "http://localhost:5173/";
   const urlParams = new URLSearchParams(window.location.search);
   const code = urlParams.get("code");
   const [isRedirect, setIsRedirect] = useState(true);
@@ -41,7 +43,7 @@ export default function Login() {
     return base64encoded;
   }
 
-  async function loginTo() {
+  async function login() {
     const codeVerifierStorage = generateRandomString(128);
 
     generateCodeChallenge(codeVerifierStorage).then((codeChallenge) => {
@@ -105,7 +107,7 @@ export default function Login() {
       })
       .then((data) => {
         localStorage.setItem("access_token", data.access_token);
-        window.location.href = "http://localhost:5173/";
+        window.location.href = redirectAfterAuthtentication;
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -113,7 +115,7 @@ export default function Login() {
   }
 
   async function connect() {
-    await loginTo();
+    await login();
   }
   useEffect(() => {
     if (code && isRedirect) {
@@ -145,7 +147,7 @@ export default function Login() {
           height: "40px",
           border: "none",
           justifyContent: "center",
-          alignItem: "center",
+          alignItems: "center",
           borderRadius: 120,
           color: "white",
           backgroundColor: "green",
