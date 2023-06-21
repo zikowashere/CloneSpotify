@@ -5,7 +5,6 @@ import { track } from "../types/track";
 
 export const ActionMusic = () => {
   const [durationTrack, setDurationTrack] = useState(0);
-
   const {
     musicPlay,
     setMusicPlay,

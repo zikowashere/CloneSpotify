@@ -2,7 +2,7 @@ import React, { ChangeEvent, useContext, useEffect, useState } from "react";
 import { headerStyle } from "../assets/style/Header";
 import { SearchContext } from "../hooks/SearchContext";
 import { useSearch } from "../hooks/useSearch";
-import spotifyLogo from "../assets/spotifyLogo.jpeg";
+import spotifyLogo from "../assets/Images/spotifyLogo.jpeg";
 
 const Header = () => {
   const search = useContext(SearchContext);
@@ -10,7 +10,7 @@ const Header = () => {
   const { searchKeyWord } = useSearch();
 
   const searchForKeyWord = (e: ChangeEvent) => {
-    setKeyWord(e.target?.value);
+    setKeyWord(e.target.value);
     searchKeyWord(keyword);
   };
 

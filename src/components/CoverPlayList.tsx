@@ -1,9 +1,4 @@
-import React, { useEffect } from "react";
-import spotifyPlayer from "../assets/SpotifyPlayButton.png";
-import { useSearchTrackById } from "../hooks/useSearchTracksByid";
-import { Link, useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { TrackContext } from "../hooks/SearchTracksByArtistContext";
+import React from "react";
 
 type Props = {
   imagePlaylist: string;

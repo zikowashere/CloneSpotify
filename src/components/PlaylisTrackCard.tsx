@@ -1,4 +1,4 @@
-import spotifyPlayer from "../assets/SpotifyPlayButton.png";
+import spotifyPlayer from "../assets/Images/SpotifyPlayButton.png";
 import { ActionMusic } from "../actions/ActionMusic";
 
 type Props = {

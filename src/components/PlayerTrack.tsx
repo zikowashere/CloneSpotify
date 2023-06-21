@@ -1,13 +1,12 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
-import playMusicImg from "../assets/playMusic.png";
-import pauseMusicImg from "../assets/pauseSpotifyButton.png";
-import backMusicImg from "../assets/backSpotify.png";
-import nextMusicImg from "../assets/nextSpotify.png";
+import playMusicImg from "../assets/Images/playMusic.png";
+import pauseMusicImg from "../assets/Images/pauseSpotifyButton.png";
+import backMusicImg from "../assets/Images/backSpotify.png";
+import nextMusicImg from "../assets/Images/nextSpotify.png";
 import { ActionMusic } from "../actions/ActionMusic";
 import { contextMusic } from "../hooks/MusicPlayContext";
 import ProgressBar from "./ProgressBar";
 import { formatTime } from "../../global";
-import { TrackContext } from "../hooks/SearchTracksByArtistContext";
 import { track } from "../types/track";
 
 type Props = {

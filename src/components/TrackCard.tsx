@@ -1,4 +1,4 @@
-import spotifyPlayer from "../assets/SpotifyPlayButton.png";
+import spotifyPlayer from "../assets/Images/SpotifyPlayButton.png";
 import { ActionMusic } from "../actions/ActionMusic";
 import { useContext } from "react";
 import { TrackContext } from "../hooks/SearchTracksByArtistContext";

@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { API_CLIENT } from "../../env.config";
-import logo from "../assets/logo.png";
+import logo from "../assets/Images/logo.png";
 import { loginContext } from "../hooks/LoginContext";
 import React from "react";
 
