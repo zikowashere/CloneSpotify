@@ -8,11 +8,10 @@ type Props = {
   imageArtist: string;
   artistName?: string;
   title: string;
-  uri: string;
   track: track;
 };
 
-const PlaylisTrackCard = ({ title, uri, artistName, track }: Props) => {
+const PlaylisTrackCard = ({ title, artistName, track }: Props) => {
   const { elapsedMs } = useContext(contextMusic);
   const { playTrack } = ActionMusic();
   return (

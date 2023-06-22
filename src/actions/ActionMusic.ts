@@ -87,10 +87,6 @@ export const ActionMusic = () => {
     });
   };
 
-  useEffect(() => {
-    console.log("is playing", isPlaying);
-  }, [musicPlay]);
-
   return {
     pauseTrack,
     backTrack,

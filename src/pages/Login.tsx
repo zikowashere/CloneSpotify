@@ -120,7 +120,7 @@ export default function Login() {
           });
       }
     }
-  }, [code]);
+  }, []);
 
   async function setToken(code) {
     const code_verifier = localStorage.getItem("code_verifier");

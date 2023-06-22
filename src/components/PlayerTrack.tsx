@@ -82,7 +82,7 @@ const PlayerTrack = ({ track, playOrStopTrack, durationTrack }: Props) => {
               top: "50%",
             }}
           >
-            {track?.artists.map((artist) => (
+            {track?.artists?.map((artist) => (
               <p style={{ color: "grey", fontSize: "12px" }}>{artist.name}</p>
             ))}
           </div>
