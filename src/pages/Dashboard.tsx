@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useMemo } from "react";
 import { useSearch } from "../hooks/useSearch";
 import ChoiceSearchBar from "../components/ChoiceSearchBar";
 import { contextMusic } from "../hooks/MusicPlayContext";
@@ -13,31 +13,19 @@ import Playlists from "../components/Playlists";
 import TrackPlaylist from "./TrackPlaylist";
 import Episodes from "../components/Episodes";
 import React from "react";
+import { contextApp } from "../hooks/ContextApp";
 
 const Dashboard = () => {
   const searchPlaylist = useSearch();
-  const {
-    musicPlay,
-    stopStratTrack,
-    elapsedMs,
-    setStopStratTrack,
-    isPlaying,
-    setElapsedMs,
-  } = useContext(contextMusic);
+  const showScreenContext = useContext(contextApp);
+
+  const { musicPlay, isPlaying, setElapsedMs, elapsedMs } =
+    useContext(contextMusic);
   const { track, showPlayslist } = useContext(TrackContext);
-  const { playTrack, pauseTrack } = ActionMusic();
 
-  const playTrackArtistOrPlaylist = () => {
-    playTrack(musicPlay, elapsedMs);
-  };
-
-  const playMusicOrStop = () => {
-    setStopStratTrack(!stopStratTrack);
-    stopStratTrack ? pauseTrack() : playTrackArtistOrPlaylist();
-  };
-
-  useEffect(() => {
+  useMemo(() => {
     setElapsedMs(0);
+    console.log("elapsed time here is ", elapsedMs);
     searchPlaylist.getPlayListUser();
     searchPlaylist.getEpisodesUser();
   }, [musicPlay]);
@@ -45,36 +33,33 @@ const Dashboard = () => {
   return (
     <div>
       <div>
-        <div>
-          <Header />
-        </div>
-        <div>
-          <ChoiceSearchBar />
-        </div>
+        <Header />
       </div>
+      <div>
+        <ChoiceSearchBar />
+      </div>
+
       <div style={{ display: "flex", flexDirection: "row" }}>
-        <div>
-          <div
+        <div
+          style={{
+            left: 0,
+            width: "15%",
+            backgroundColor: "#1E1D1D",
+            borderRadius: "10px",
+          }}
+        >
+          <p
             style={{
-              position: "fixed",
-              left: 0,
-              height: "90vh",
-              width: "15%",
-              backgroundColor: "#1E1D1D",
-              borderRadius: "10px",
+              color: "white",
+              fontSize: "20px",
+              fontWeight: "bold",
+              marginLeft: "10%",
             }}
           >
-            <p
-              style={{
-                color: "white",
-                fontSize: "20px",
-                fontWeight: "bold",
-                marginLeft: "10%",
-              }}
-            >
-              {" "}
-              Playlists{" "}
-            </p>
+            {" "}
+            Playlists{" "}
+          </p>
+          <div style={{ height: "70%", overflowY: "scroll" }}>
             <SideBar
               children={
                 <>
@@ -85,23 +70,17 @@ const Dashboard = () => {
             />
           </div>
         </div>
+
         <div
           style={{
             display: "flex",
-            marginLeft: "30%",
+            marginLeft: "20%",
             width: "100%",
             justifyContent: "center",
           }}
         >
           {track.length > 0 ? (
-            <div
-              style={{
-                height: "calc(100vh - 10%)",
-                overflowY: "auto",
-              }}
-            >
-              {showPlayslist ? <TrackPlaylist /> : <Tracks />}{" "}
-            </div>
+            <>{showPlayslist ? <TrackPlaylist /> : <Tracks />}</>
           ) : (
             <Home />
           )}
@@ -113,14 +92,13 @@ const Dashboard = () => {
           position: "fixed",
           backgroundColor: "black",
           bottom: 0,
-          height: "10%",
+          height: "7%",
           width: "100%",
         }}
       >
         {isPlaying && (
           <PlayerTrack
             track={musicPlay}
-            playOrStopTrack={playMusicOrStop}
             durationTrack={musicPlay!.duration_ms}
           />
         )}

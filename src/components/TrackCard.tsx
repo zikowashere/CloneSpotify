@@ -3,7 +3,7 @@ import { ActionMusic } from "../actions/ActionMusic";
 import { useContext } from "react";
 import { contextMusic } from "../hooks/MusicPlayContext";
 import { track } from "../types/track";
-import React from "react";
+import React, { useMemo } from "react";
 
 type Props = {
   imageArtist: string;
@@ -16,17 +16,18 @@ type Props = {
 
 const TrackCard = ({ title, artistName, track, image }: Props) => {
   const { playTrack } = ActionMusic();
-  const { elapsedMs } = useContext(contextMusic);
+  const { elapsedMs, setElapsedMs } = useContext(contextMusic);
+
   const play = () => {
-    playTrack(track, elapsedMs);
+    playTrack(track, 0);
   };
   return (
     <div
       style={{
-        height: "4%",
-        marginBottom: "50px",
+        height: "80px",
+        marginBottom: "40px",
         flexDirection: "row",
-        width: "70%",
+        width: "100%",
       }}
     >
       <div
@@ -37,40 +38,34 @@ const TrackCard = ({ title, artistName, track, image }: Props) => {
         }}
       >
         <img
-          style={{ height: "100%", width: "15%", marginRight: "5%" }}
+          style={{ height: "80px", width: "100px", marginRight: "50px" }}
           src={image}
         />
 
-        <div
+        <p
           style={{
-            display: "flex",
-            flexDirection: "column",
-            position: "relative",
-            flex: 1,
+            marginLeft: "2%",
+            color: "white",
+            fontSize: "12px",
+            fontWeight: "bold",
+            bottom: "10px",
+            width: "100%",
           }}
         >
-          <p
-            style={{
-              marginLeft: "2%",
-              color: "white",
-              fontSize: "12px",
-              fontWeight: "bold",
-              bottom: "10px",
-            }}
-          >
-            {title}
-          </p>
-          <p
-            style={{
-              position: "absolute",
-              fontSize: "13px",
-              color: "white",
-              bottom: "-10px",
-            }}
-          >
-            {artistName}
-          </p>
-        </div>
+          {title}
+        </p>
+
+        <p
+          style={{
+            position: "absolute",
+            fontSize: "13px",
+            color: "white",
+            bottom: "-10px",
+          }}
+        >
+          {artistName}
+        </p>
+
         <div>
           <button
             style={{
@@ -83,8 +78,6 @@ const TrackCard = ({ title, artistName, track, image }: Props) => {
             <img
               style={{
                 height: "20px",
-                marginRight: "2%",
-                marginTop: "7%",
               }}
               src={spotifyPlayer}
             />

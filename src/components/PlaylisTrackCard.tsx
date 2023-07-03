@@ -17,7 +17,7 @@ const PlaylisTrackCard = ({ title, artistName, track }: Props) => {
   return (
     <div
       style={{
-        height: "4%",
+        height: "2%",
         marginBottom: "50px",
         flexDirection: "row",
       }}
@@ -30,7 +30,7 @@ const PlaylisTrackCard = ({ title, artistName, track }: Props) => {
         }}
       >
         <img
-          style={{ height: "100%", width: "15%", marginRight: "5%" }}
+          style={{ height: "50%", width: "15%", marginRight: "5%" }}
           src={track.album.images[0].url}
         />
 

@@ -3,47 +3,54 @@ import { SearchContext } from "../hooks/SearchContext";
 import { useSearch } from "../hooks/useSearch";
 import TopFollowedArtist from "../components/TopFollowedArtist";
 import { contextMusic } from "../hooks/MusicPlayContext";
-import BestResult from "../components/BestResult";
+import React from "react";
+import BestArtistTrackResult from "../components/BestArtistTrackResult";
+import { contextApp } from "../hooks/ContextApp";
+import AllResults from "../components/AllResults";
 
 const Home = () => {
-  const search = useContext(SearchContext);
-  const searchPlaylist = useSearch();
+  const { search } = useContext(SearchContext);
   const musicContext = useContext(contextMusic);
-  const result = search.search;
+  const showScreenContext = useContext(contextApp);
+  const searchPlaylist = useSearch();
 
   useEffect(() => {
     searchPlaylist.getPlayListUser();
-  }, [musicContext.isPlaying]);
+  }, [musicContext.isPlaying, showScreenContext.showScreen]);
 
   return (
     <div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-        }}
-      >
-        <p
-          style={{
-            fontSize: "20px",
-            fontWeight: "bold",
-            marginLeft: "9%",
-            color: "white",
-          }}
-        >
-          Top Artists
-        </p>
+      {showScreenContext.showScreen !== "" ? (
+        <AllResults />
+      ) : (
         <div
           style={{
             display: "flex",
-            justifyContent: "flex-start",
-            width: "calc(100vh - 5%)",
-            overflowX: "auto",
+            flexDirection: "row",
           }}
         >
-          <TopFollowedArtist />
+          <p
+            style={{
+              fontSize: "20px",
+              fontWeight: "bold",
+              marginLeft: "9%",
+              color: "white",
+            }}
+          >
+            Top Artists
+          </p>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-start",
+              width: "calc(100vh - 5%)",
+              overflowX: "auto",
+            }}
+          >
+            <TopFollowedArtist />
+          </div>
         </div>
-      </div>
+      )}
 
       <div
         style={{
@@ -51,21 +58,25 @@ const Home = () => {
           flexDirection: "row",
         }}
       >
-        {result.length > 0 && (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              marginLeft: "9%",
-            }}
-          >
-            <p style={{ fontSize: "22px", fontWeight: "bold", color: "white" }}>
-              {" "}
-              Meilleur résultat{" "}
-            </p>
-            <BestResult artist={result[0]} />
-          </div>
-        )}
+        {search.artists?.items.length > 0 &&
+          showScreenContext.showScreen === "" && (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                marginLeft: "9%",
+                width: "50%",
+              }}
+            >
+              <p
+                style={{ fontSize: "22px", fontWeight: "bold", color: "white" }}
+              >
+                {" "}
+                Meilleur résultat{" "}
+              </p>
+              <BestArtistTrackResult artist={search.artists?.items[0]} />
+            </div>
+          )}
       </div>
     </div>
   );

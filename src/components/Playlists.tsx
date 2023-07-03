@@ -1,9 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { SearchContext } from "../hooks/SearchContext";
 import PlaylistCard from "./PlaylistCard";
+import { contextApp } from "../hooks/ContextApp";
 
 const Playlists = () => {
   const search = useContext(SearchContext);
+  const showScreenContext = useContext(contextApp);
+
+  useEffect(() => {
+    showScreenContext.setIsClicked(false);
+  }, [showScreenContext]);
 
   return (
     <div
@@ -12,7 +18,6 @@ const Playlists = () => {
         flexDirection: "column",
         width: "100%",
         top: "10%",
-        height: "50%",
       }}
     >
       {search.playlist.map((playlist) => (

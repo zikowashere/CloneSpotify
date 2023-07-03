@@ -12,9 +12,8 @@ import { track } from "../types/track";
 type Props = {
   track: track | undefined;
   durationTrack: number;
-  playOrStopTrack: () => void;
 };
-const PlayerTrack = ({ track, playOrStopTrack, durationTrack }: Props) => {
+const PlayerTrack = ({ track, durationTrack }: Props) => {
   const [imagePlayerTrack, setImagePlayerTrack] = useState("");
   const {
     musicPlay,
@@ -23,21 +22,35 @@ const PlayerTrack = ({ track, playOrStopTrack, durationTrack }: Props) => {
     setStopStratTrack,
     setElapsedMs,
   } = useContext(contextMusic);
-  const { backTrack, nextTrack, getCurrentState } = ActionMusic();
+  const { backTrack, nextTrack, getCurrentState, getCurrentPlaybackTime } =
+    ActionMusic();
   const [durationTime, setDurationTime] = useState<string | undefined>("0:00");
   const [durationOfTrack, setDurationOfTrack] = useState<string>();
 
-  useMemo(() => {
+  const { playTrack, pauseTrack } = ActionMusic();
+
+  const playTrackArtistOrPlaylist = () => {
+    playTrack(musicPlay, elapsedMs);
+  };
+  const playMusicOrStop = () => {
+    setStopStratTrack(!stopStratTrack);
+    stopStratTrack ? pauseTrack() : playTrackArtistOrPlaylist();
+  };
+
+  useEffect(() => {
     setElapsedMs(0);
     setDurationOfTrack(formatTime(durationTrack));
     setImagePlayerTrack(musicPlay!.album.images[0].url);
-  }, [track?.name]);
+  }, [musicPlay]);
 
   useEffect(() => {
     let intervalId = 0;
+    console.log("====================================");
+    console.log("elpased time effect", elapsedMs);
+    console.log("====================================");
     if (stopStratTrack && elapsedMs < durationTrack) {
       intervalId = setInterval(() => {
-        getCurrentState();
+        getCurrentPlaybackTime();
         setDurationTime(formatTime(elapsedMs));
       }, 1000);
     } else {
@@ -120,7 +133,7 @@ const PlayerTrack = ({ track, playOrStopTrack, durationTrack }: Props) => {
               alignItems: "center",
               marginRight: "10px",
             }}
-            onClick={() => playOrStopTrack()}
+            onClick={() => playMusicOrStop()}
           >
             {stopStratTrack ? (
               <img
@@ -150,16 +163,14 @@ const PlayerTrack = ({ track, playOrStopTrack, durationTrack }: Props) => {
             display: "flex",
             flexDirection: "row",
             flex: 1,
-            top: "20%",
             height: "4%",
-            border: "1px 1px white",
           }}
         >
           <p
             style={{
               color: "grey",
               position: "absolute",
-              bottom: "15%",
+              bottom: "10%",
               height: "4%",
               left: "35%",
               fontSize: "12",
@@ -176,7 +187,7 @@ const PlayerTrack = ({ track, playOrStopTrack, durationTrack }: Props) => {
               position: "absolute",
               right: "25%",
               fontSize: "12",
-              bottom: "15%",
+              bottom: "10%",
               height: "4%",
             }}
           >

@@ -2,18 +2,25 @@ import "./App.css";
 import { SearchProvider } from "./hooks/SearchContext";
 import { BrowserRouter } from "react-router-dom";
 import { TrackProvider } from "./hooks/SearchTracksByArtistContext";
-import { MusicPlayProvider } from "./hooks/MusicPlayContext";
+import { MusicPlayProvider, contextMusic } from "./hooks/MusicPlayContext";
 import Callback from "./pages/Callback";
-import React from "react";
+import React, { useMemo, useContext } from "react";
+import { ContextAppProvider } from "./hooks/ContextApp";
 
 function App() {
+  const { musicPlay, setElapsedMs } = useContext(contextMusic);
+  useMemo(() => {
+    setElapsedMs(0);
+  }, [musicPlay]);
   return (
     <div style={{ backgroundColor: "black" }}>
       <BrowserRouter>
         <MusicPlayProvider>
           <TrackProvider>
             <SearchProvider>
-              <Callback />
+              <ContextAppProvider>
+                <Callback />
+              </ContextAppProvider>
             </SearchProvider>
           </TrackProvider>
         </MusicPlayProvider>

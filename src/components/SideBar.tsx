@@ -14,7 +14,7 @@ const SideBar = ({ children }: Props) => {
         width: "100%",
       }}
     >
-      {children}
+      <div>{children}</div>
     </div>
   );
 };

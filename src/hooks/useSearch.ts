@@ -9,12 +9,13 @@ export const useSearch = () => {
     await fetch(
       `https://api.spotify.com/v1/search?q=${encodeURIComponent(
         keyWord
-      )}&type=artist&limit=1`,
+      )}&type=album%2Ctrack%2Cartist%2Cplaylist&limit=30`,
       { method: "GET", headers: { Authorization: `Bearer ${accessToken}` } }
     ).then((response) => {
-      response
-        .json()
-        .then((response) => search.setSearch(response.artists.items));
+      response.json().then((response) => {
+        console.log("response search is", response);
+        search.setSearch(response);
+      });
     });
   }
 

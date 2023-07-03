@@ -12,7 +12,7 @@ const ProgressBar = ({ trackDuration, currentTime }: Props) => {
     <div
       style={{
         position: "absolute",
-        bottom: "20%",
+        bottom: "10%",
         height: "4%",
         left: "40%",
         backgroundColor: "white",

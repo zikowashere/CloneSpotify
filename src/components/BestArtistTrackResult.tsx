@@ -9,17 +9,25 @@ type Props = {
   artist: object;
 };
 
-const BestResult = ({ artist }: Props) => {
+const BestArtistTrackResult = ({ artist }: Props) => {
   const { track, topTrack } = useContext(TrackContext);
   const searchByIdArtist = useSearchTrackById();
   const search = useContext(SearchContext);
   useEffect(() => {
-    search.search.length > 0 &&
-      searchByIdArtist.getTopTrackByIdArtist(search.search[0].id);
+    search.search.artists?.items.length > 0 &&
+      searchByIdArtist.getTopTrackByIdArtist(
+        search.search.artists?.items[0].id
+      );
   }, [topTrack]);
 
   return (
-    <div style={{ display: "flex", flexDirection: "row" }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        width: "100%",
+      }}
+    >
       <div style={{ marginRight: "10%" }}>
         <ArtistCard
           imageArtist={artist.images[2]?.url}
@@ -29,8 +37,9 @@ const BestResult = ({ artist }: Props) => {
       </div>
       <div
         style={{
-          height: "calc(100vh - 50%)",
-          overflowY: "auto",
+          height: "700px",
+          overflowY: "scroll",
+          width: "50%",
         }}
       >
         {topTrack.map((trackOfArtsit) => (
@@ -47,4 +56,4 @@ const BestResult = ({ artist }: Props) => {
   );
 };
 
-export default BestResult;
+export default BestArtistTrackResult;

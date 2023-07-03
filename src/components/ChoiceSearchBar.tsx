@@ -1,12 +1,19 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { TrackContext } from "../hooks/SearchTracksByArtistContext";
+import { contextApp } from "../hooks/ContextApp";
+import { SearchContext } from "../hooks/SearchContext";
 
 const ChoiceSearchBar = () => {
   const track = useContext(TrackContext);
+  const showScreenContext = useContext(contextApp);
+  const { search, keyword } = useContext(SearchContext);
+
   const InitializeDashboard = () => {
     track.setTrack([]);
+    showScreenContext.setShowScreen("");
     track.setShowPlaylist(false);
   };
+  useEffect(() => {}, [search, showScreenContext.showScreen]);
   return (
     <div
       style={{
@@ -34,77 +41,92 @@ const ChoiceSearchBar = () => {
           &#x2190;
         </button>
       </div>
-
-      <button
-        style={{
-          marginRight: "2%",
-          borderRadius: "25%",
-          background: "#292929",
-          color: "white",
-        }}
-      >
-        Tout
-      </button>
-      <button
-        style={{
-          marginRight: "2%",
-          borderRadius: "25%",
-          background: "#292929",
-          color: "white",
-        }}
-      >
-        Artistes
-      </button>
-      <button
-        style={{
-          marginRight: "2%",
-          borderRadius: "25%",
-          background: "#292929",
-          color: "white",
-        }}
-      >
-        Titres
-      </button>
-      <button
-        style={{
-          marginRight: "2%",
-          borderRadius: "25%",
-          background: "#292929",
-          color: "white",
-        }}
-      >
-        Albums
-      </button>
-      <button
-        style={{
-          marginRight: "2%",
-          borderRadius: "25%",
-          background: "#292929",
-          color: "white",
-        }}
-      >
-        Playlists
-      </button>
-      <button
-        style={{
-          marginRight: "2%",
-          borderRadius: "25%",
-          background: "#292929",
-          color: "white",
-        }}
-      >
-        Profils
-      </button>
-      <button
-        style={{
-          marginRight: "2%",
-          borderRadius: "25%",
-          background: "#292929",
-          color: "white",
-        }}
-      >
-        Podcast et emissions
-      </button>
+      {keyword !== "" && (
+        <>
+          <button
+            style={{
+              marginRight: "2%",
+              borderRadius: "25%",
+              background: "#292929",
+              color: "white",
+            }}
+          >
+            Tout
+          </button>
+          <button
+            style={{
+              marginRight: "2%",
+              borderRadius: "25%",
+              background: "#292929",
+              color: "white",
+            }}
+            onClick={() => {
+              showScreenContext.setShowScreen("artists");
+              showScreenContext.setIsClicked(true);
+            }}
+          >
+            Artistes
+          </button>
+          <button
+            style={{
+              marginRight: "2%",
+              borderRadius: "25%",
+              background: "#292929",
+              color: "white",
+            }}
+            onClick={() => {
+              showScreenContext.setShowScreen("titres");
+              showScreenContext.setIsClicked(true);
+            }}
+          >
+            Titres
+          </button>
+          <button
+            style={{
+              marginRight: "2%",
+              borderRadius: "25%",
+              background: "#292929",
+              color: "white",
+            }}
+          >
+            Albums
+          </button>
+          <button
+            style={{
+              marginRight: "2%",
+              borderRadius: "25%",
+              background: "#292929",
+              color: "white",
+            }}
+            onClick={() => {
+              showScreenContext.setShowScreen("playlists");
+              showScreenContext.setIsClicked(true);
+            }}
+          >
+            Playlists
+          </button>
+          <button
+            style={{
+              marginRight: "2%",
+              borderRadius: "25%",
+              background: "#292929",
+              color: "white",
+            }}
+          >
+            Profils
+          </button>
+          <button
+            style={{
+              marginRight: "2%",
+              borderRadius: "25%",
+              background: "#292929",
+              color: "white",
+            }}
+          >
+            Podcast et emissions
+          </button>
+        </>
+      )}
     </div>
   );
 };

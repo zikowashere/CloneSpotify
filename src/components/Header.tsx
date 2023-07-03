@@ -6,16 +6,15 @@ import spotifyLogo from "../assets/Images/spotifyLogo.jpeg";
 
 const Header = () => {
   const search = useContext(SearchContext);
-  const [keyword, setKeyWord] = useState("");
   const { searchKeyWord } = useSearch();
 
   const searchForKeyWord = (e: ChangeEvent) => {
-    setKeyWord(e.target.value);
-    searchKeyWord(keyword);
+    search.setKeyWord(e.target.value);
+    searchKeyWord(search.keyword);
   };
 
   useEffect(() => {
-    keyword === "" && search.setSearch([]);
+    search.keyword === "" && search.setSearch([]);
   }, [search.search]);
 
   return (
@@ -30,7 +29,7 @@ const Header = () => {
       />
       <input
         type="text"
-        value={keyword}
+        value={search.keyword}
         placeholder="Que souhaitez-vous écouter? "
         style={headerStyle.styleSearch}
         title="Search"

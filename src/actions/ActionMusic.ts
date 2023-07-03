@@ -6,13 +6,21 @@ import { track } from "../types/track";
 export const ActionMusic = () => {
   const [durationTrack, setDurationTrack] = useState(0);
   const {
-    musicPlay,
     setMusicPlay,
     isPlaying,
     setIsPlaying,
     setStopStratTrack,
     setElapsedMs,
+    elapsedMs,
+    musicPlay,
   } = useContext(contextMusic);
+  useMemo(() => {
+    setElapsedMs(0);
+    console.log("====================================");
+    console.log("music is changed", elapsedMs);
+    console.log("====================================");
+  }, [musicPlay]);
+  useEffect(() => {}, [elapsedMs]);
 
   const playTrack = async (track: track | undefined, elapsedMs: number) => {
     setIsPlaying(true);
