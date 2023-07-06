@@ -74,7 +74,7 @@ const Dashboard = () => {
         <div
           style={{
             display: "flex",
-            marginLeft: "20%",
+            marginLeft: "5%",
             width: "100%",
             justifyContent: "center",
           }}

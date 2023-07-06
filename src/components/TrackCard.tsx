@@ -8,7 +8,7 @@ import React, { useMemo } from "react";
 type Props = {
   imageArtist: string;
   artistName?: string;
-  image: string;
+  image?: string;
   title: string;
   uri: string;
   track: track;
@@ -27,7 +27,7 @@ const TrackCard = ({ title, artistName, track, image }: Props) => {
         height: "80px",
         marginBottom: "40px",
         flexDirection: "row",
-        width: "100%",
+        width: "450px",
       }}
     >
       <div

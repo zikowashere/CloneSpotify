@@ -2,11 +2,21 @@ import React, { useContext, useEffect } from "react";
 import { TrackContext } from "../hooks/SearchTracksByArtistContext";
 import { contextApp } from "../hooks/ContextApp";
 import { SearchContext } from "../hooks/SearchContext";
+import { useSearch } from "../hooks/useSearch";
 
 const ChoiceSearchBar = () => {
   const track = useContext(TrackContext);
   const showScreenContext = useContext(contextApp);
   const { search, keyword } = useContext(SearchContext);
+  const { getAlbumByIdArtist } = useSearch();
+
+  const AlbumOfArtist = async () => {
+    try {
+      await getAlbumByIdArtist(search.artists.items[0].id);
+    } catch (error) {
+      console.log("Une erreur s'est produite :", error);
+    }
+  };
 
   const InitializeDashboard = () => {
     track.setTrack([]);
@@ -87,6 +97,11 @@ const ChoiceSearchBar = () => {
               borderRadius: "25%",
               background: "#292929",
               color: "white",
+            }}
+            onClick={() => {
+              showScreenContext.setShowScreen("albums");
+              AlbumOfArtist();
+              showScreenContext.setIsClicked(true);
             }}
           >
             Albums

@@ -9,14 +9,7 @@ import { contextMusic } from "../hooks/MusicPlayContext";
 const Tracks = () => {
   const track = useContext(TrackContext);
   const trackArray = track.track;
-  const { getCurrentState } = ActionMusic();
-  const {
-    musicPlay,
-    stopStratTrack,
-    elapsedMs,
-    setStopStratTrack,
-    setElapsedMs,
-  } = useContext(contextMusic);
+  const { musicPlay, setElapsedMs } = useContext(contextMusic);
 
   useEffect(() => {
     setElapsedMs(0);
@@ -43,7 +36,6 @@ const Tracks = () => {
         {trackArray.map((track: track) => (
           <TrackCard
             title={track.name}
-            imageArtist={track.album.images[0]?.url}
             uri={track?.uri}
             track={track}
             image={track.album.images[0]?.url}
