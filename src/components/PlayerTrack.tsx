@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import playMusicImg from "../assets/Images/playMusic.png";
 import pauseMusicImg from "../assets/Images/pauseSpotifyButton.png";
 import backMusicImg from "../assets/Images/backSpotify.png";
@@ -15,7 +15,9 @@ type Props = {
   durationTrack: number;
 };
 const PlayerTrack = ({ track, durationTrack }: Props) => {
-  const [imagePlayerTrack, setImagePlayerTrack] = useState("");
+  const [imagePlayerTrack, setImagePlayerTrack] = useState<string | undefined>(
+    ""
+  );
   const {
     musicPlay,
     stopStratTrack,
@@ -42,12 +44,11 @@ const PlayerTrack = ({ track, durationTrack }: Props) => {
     setDurationOfTrack(formatTime(durationTrack));
     Object.keys(album).length > 0
       ? setImagePlayerTrack(album?.images[0]?.url)
-      : setImagePlayerTrack(musicPlay!.album?.images[0]?.url);
+      : setImagePlayerTrack(musicPlay?.album?.images[0]?.url);
   }, [musicPlay]);
 
   useEffect(() => {
-    let intervalId = 0;
-
+    let intervalId;
     if (stopStratTrack && elapsedMs < durationTrack) {
       intervalId = setInterval(() => {
         getCurrentPlaybackTime();

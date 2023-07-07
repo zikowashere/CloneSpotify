@@ -5,6 +5,7 @@ import ArtistCard from "./ArtistCard";
 import TrackCard from "./TrackCard";
 import PlaylistCard from "./PlaylistCard";
 import AlbumArtist from "./AlbumArtist";
+import { album } from "../types/album";
 
 const AllResults = () => {
   const { search, albums } = useContext(SearchContext);
@@ -65,7 +66,7 @@ const AllResults = () => {
         }}
       >
         {showScreenContext.showScreen === "albums" &&
-          albums?.map((album) => (
+          albums?.map((album: album) => (
             <AlbumArtist
               imageAlbum={album.images[0]?.url}
               title={album.artists[0].name}

@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { SearchContext } from "../hooks/SearchContext";
 import PlaylistCard from "./PlaylistCard";
 import { contextApp } from "../hooks/ContextApp";
+import { playlist } from "../types/playlist";
 
 const Playlists = () => {
   const search = useContext(SearchContext);
@@ -20,7 +21,7 @@ const Playlists = () => {
         top: "10%",
       }}
     >
-      {search.playlist.map((playlist) => (
+      {search.playlist.map((playlist: playlist) => (
         <PlaylistCard
           title={playlist?.name}
           imagePlaylsit={playlist.images[0]?.url}

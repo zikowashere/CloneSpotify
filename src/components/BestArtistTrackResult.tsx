@@ -5,9 +5,10 @@ import { useSearchTrackById } from "../hooks/useSearchTracksByid";
 import { TrackContext } from "../hooks/SearchTracksByArtistContext";
 import { SearchContext } from "../hooks/SearchContext";
 import { track } from "../types/track";
+import { artist } from "../types/artist";
 
 type Props = {
-  artist: object;
+  artist: artist;
 };
 
 const BestArtistTrackResult = ({ artist }: Props) => {

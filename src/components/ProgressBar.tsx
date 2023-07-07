@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { formatTime } from "../../global";
+import React from "react";
 
 type Props = {
   trackDuration: number;
