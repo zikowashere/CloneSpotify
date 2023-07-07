@@ -13,7 +13,6 @@ export const useSearch = () => {
       { method: "GET", headers: { Authorization: `Bearer ${accessToken}` } }
     ).then((response) => {
       response.json().then((response) => {
-        console.log("response search is", response);
         search.setSearch(response);
       });
     });
@@ -73,11 +72,26 @@ export const useSearch = () => {
 
       if (response.ok) {
         const data = await response.json();
-        console.log("====================================");
-        console.log("data albums is ", data);
-        console.log("====================================");
-
         search.setAlbums(data.items);
+      } else {
+        console.log("La requête n'a pas abouti :", response.status);
+      }
+    } catch (error) {
+      console.log("Une erreur s'est produite :", error);
+    }
+  }
+  async function getAlbumById(id: string) {
+    try {
+      const response = await fetch(`https://api.spotify.com/v1/albums/${id}`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        search.setAlbum(data);
       } else {
         console.log("La requête n'a pas abouti :", response.status);
       }
@@ -93,5 +107,6 @@ export const useSearch = () => {
     topArtistFollowed,
     getEpisodesUser,
     getAlbumByIdArtist,
+    getAlbumById,
   };
 };

@@ -16,9 +16,6 @@ export const ActionMusic = () => {
   } = useContext(contextMusic);
   useMemo(() => {
     setElapsedMs(0);
-    console.log("====================================");
-    console.log("music is changed", elapsedMs);
-    console.log("====================================");
   }, [musicPlay]);
   useEffect(() => {}, [elapsedMs]);
 
@@ -60,9 +57,7 @@ export const ActionMusic = () => {
       method: "POST",
       headers: { Authorization: `Bearer ${accessToken}` },
     }).then((response) => {
-      console.log("====================================");
       console.log(response);
-      console.log("====================================");
     });
   };
 

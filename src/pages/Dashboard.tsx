@@ -25,7 +25,6 @@ const Dashboard = () => {
 
   useMemo(() => {
     setElapsedMs(0);
-    console.log("elapsed time here is ", elapsedMs);
     searchPlaylist.getPlayListUser();
     searchPlaylist.getEpisodesUser();
   }, [musicPlay]);

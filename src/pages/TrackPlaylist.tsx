@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
-import { useEffect } from "react";
 import { TrackContext } from "../hooks/SearchTracksByArtistContext";
-import { ActionMusic } from "../actions/ActionMusic";
 import TrackCard from "../components/TrackCard";
+import { track } from "../types/track";
 
 const TrackPlaylist = () => {
   const track = useContext(TrackContext);
@@ -22,14 +21,13 @@ const TrackPlaylist = () => {
           flexDirection: "column",
         }}
       >
-        {trackArray.map((track) => (
+        {trackArray.map((track: track) => (
           <TrackCard
             title={track.track.album.name}
             imageArtist={track.track.album.images[0]?.url}
             uri={track.track.uri}
             artistName={track.track.album.artists[0].name}
             track={track.track}
-            image={track.track.album.images[0].url}
           />
         ))}
       </div>

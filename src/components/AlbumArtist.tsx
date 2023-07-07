@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSearchTrackById } from "../hooks/useSearchTracksByid";
+import { useSearch } from "../hooks/useSearch";
 
 type Props = {
   imageAlbum: string;
@@ -7,14 +8,16 @@ type Props = {
   idAlbum: string;
 };
 const AlbumArtist = ({ imageAlbum, title, idAlbum }: Props) => {
-  useEffect(() => {
-    //console.log("id album", idAlbum);
-  });
   const { getTracksAlbum } = useSearchTrackById();
+  const { getAlbumById } = useSearch();
+  const HandleAlbum = () => {
+    getTracksAlbum(idAlbum);
+    getAlbumById(idAlbum);
+  };
   return (
     <button
       style={{ cursor: "pointer", width: "100%", backgroundColor: "black" }}
-      onClick={() => getTracksAlbum(idAlbum)}
+      onClick={() => HandleAlbum()}
     >
       <div
         style={{

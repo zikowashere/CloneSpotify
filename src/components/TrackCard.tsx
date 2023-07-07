@@ -16,12 +16,6 @@ type Props = {
 const TrackCard = ({ title, artistName, track }: Props) => {
   const { playTrack } = ActionMusic();
 
-  useEffect(() => {
-    console.log("====================================");
-    console.log(track);
-    console.log("====================================");
-  }, [track]);
-
   const play = () => {
     playTrack(track, 0);
   };

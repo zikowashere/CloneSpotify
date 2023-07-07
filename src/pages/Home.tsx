@@ -19,7 +19,7 @@ const Home = () => {
   }, [musicContext.isPlaying, showScreenContext.showScreen]);
 
   return (
-    <div>
+    <div style={{ width: "100%" }}>
       {showScreenContext.showScreen !== "" ? (
         <AllResults />
       ) : (

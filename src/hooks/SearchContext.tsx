@@ -13,12 +13,14 @@ export type SearchContextType = {
   episode: never[];
   topArtist: never[];
   albums: never[];
+  album: object;
   setSearch: Dispatch<SetStateAction<never[]>>;
   setPlaylist: Dispatch<SetStateAction<never[]>>;
   setEpisode: Dispatch<SetStateAction<never[]>>;
   setTopArtist: Dispatch<SetStateAction<never[]>>;
   setAlbums: Dispatch<SetStateAction<never[]>>;
   setKeyWord: Dispatch<SetStateAction<string>>;
+  setAlbum: Dispatch<SetStateAction<object>>;
 };
 
 export const SearchContext = createContext<SearchContextType>({
@@ -47,6 +49,10 @@ export const SearchContext = createContext<SearchContextType>({
   setEpisode: () => {
     // Faites rien ici
   },
+  album: {},
+  setAlbum: () => {
+    // Faites rien ici
+  },
 });
 
 type Props = {
@@ -59,11 +65,13 @@ export const SearchProvider = ({ children }: Props) => {
   const [episode, setEpisode] = useState<never[]>([]);
   const [topArtist, setTopArtist] = useState<never[]>([]);
   const [albums, setAlbums] = useState<never[]>([]);
+  const [album, setAlbum] = useState<object>({});
   const [keyword, setKeyWord] = useState("");
 
   const contextValue: SearchContextType = {
     search,
     albums,
+    album,
     keyword,
     topArtist,
     setSearch,
@@ -74,6 +82,7 @@ export const SearchProvider = ({ children }: Props) => {
     setTopArtist,
     setKeyWord,
     setAlbums,
+    setAlbum,
   };
 
   return (

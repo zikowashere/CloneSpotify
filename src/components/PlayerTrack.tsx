@@ -8,6 +8,7 @@ import { contextMusic } from "../hooks/MusicPlayContext";
 import ProgressBar from "./ProgressBar";
 import { formatTime } from "../../global";
 import { track } from "../types/track";
+import { SearchContext } from "../hooks/SearchContext";
 
 type Props = {
   track: track | undefined;
@@ -22,11 +23,10 @@ const PlayerTrack = ({ track, durationTrack }: Props) => {
     setStopStratTrack,
     setElapsedMs,
   } = useContext(contextMusic);
-  const { backTrack, nextTrack, getCurrentState, getCurrentPlaybackTime } =
-    ActionMusic();
+  const { album } = useContext(SearchContext);
+  const { backTrack, nextTrack, getCurrentPlaybackTime } = ActionMusic();
   const [durationTime, setDurationTime] = useState<string | undefined>("0:00");
   const [durationOfTrack, setDurationOfTrack] = useState<string>();
-
   const { playTrack, pauseTrack } = ActionMusic();
 
   const playTrackArtistOrPlaylist = () => {
@@ -40,14 +40,14 @@ const PlayerTrack = ({ track, durationTrack }: Props) => {
   useEffect(() => {
     setElapsedMs(0);
     setDurationOfTrack(formatTime(durationTrack));
-    setImagePlayerTrack(musicPlay!.album?.images[0]?.url);
+    Object.keys(album).length > 0
+      ? setImagePlayerTrack(album?.images[0]?.url)
+      : setImagePlayerTrack(musicPlay!.album?.images[0]?.url);
   }, [musicPlay]);
 
   useEffect(() => {
     let intervalId = 0;
-    console.log("====================================");
-    console.log("elpased time effect", elapsedMs);
-    console.log("====================================");
+
     if (stopStratTrack && elapsedMs < durationTrack) {
       intervalId = setInterval(() => {
         getCurrentPlaybackTime();

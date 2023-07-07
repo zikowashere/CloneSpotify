@@ -13,9 +13,6 @@ const Tracks = () => {
 
   useEffect(() => {
     setElapsedMs(0);
-    console.log("====================================");
-    console.log("track array", trackArray);
-    console.log("====================================");
   }, [musicPlay, trackArray]);
 
   return (

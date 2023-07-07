@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from "react";
 import { contextApp } from "../hooks/ContextApp";
 import { SearchContext } from "../hooks/SearchContext";
 import ArtistCard from "./ArtistCard";
-import Tracks from "../pages/Tracks";
 import TrackCard from "./TrackCard";
 import PlaylistCard from "./PlaylistCard";
 import AlbumArtist from "./AlbumArtist";
@@ -22,6 +21,7 @@ const AllResults = () => {
         height: "calc(100vh - 10%)",
         overflowY: "auto",
         width: "100%",
+        marginLeft: "15%",
       }}
     >
       <div
@@ -82,7 +82,6 @@ const AllResults = () => {
               imageArtist={trackOfArtsit.album.images[0]?.url}
               uri={trackOfArtsit?.uri}
               track={trackOfArtsit}
-              image={trackOfArtsit.album.images[0]?.url}
             />
           ))}
       </div>

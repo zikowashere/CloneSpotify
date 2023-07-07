@@ -7,7 +7,7 @@ import { useSearch } from "../hooks/useSearch";
 const ChoiceSearchBar = () => {
   const track = useContext(TrackContext);
   const showScreenContext = useContext(contextApp);
-  const { search, keyword } = useContext(SearchContext);
+  const { search, keyword, setAlbum } = useContext(SearchContext);
   const { getAlbumByIdArtist } = useSearch();
 
   const AlbumOfArtist = async () => {
@@ -22,6 +22,7 @@ const ChoiceSearchBar = () => {
     track.setTrack([]);
     showScreenContext.setShowScreen("");
     track.setShowPlaylist(false);
+    setAlbum({});
   };
   useEffect(() => {}, [search, showScreenContext.showScreen]);
   return (
