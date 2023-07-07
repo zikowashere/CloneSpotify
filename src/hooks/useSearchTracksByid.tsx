@@ -67,7 +67,6 @@ export const useSearchTrackById = () => {
 
       if (response.ok) {
         const data = await response.json();
-        console.log("data of album tracks", data);
         setTrack(data.items);
       } else {
         console.log("La requête n'a pas abouti :", response.status);

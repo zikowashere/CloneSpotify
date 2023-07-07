@@ -40,7 +40,7 @@ const PlayerTrack = ({ track, durationTrack }: Props) => {
   useEffect(() => {
     setElapsedMs(0);
     setDurationOfTrack(formatTime(durationTrack));
-    setImagePlayerTrack(musicPlay!.album.images[0].url);
+    setImagePlayerTrack(musicPlay!.album?.images[0]?.url);
   }, [musicPlay]);
 
   useEffect(() => {

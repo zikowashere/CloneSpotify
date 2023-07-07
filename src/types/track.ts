@@ -1,6 +1,5 @@
 export interface Album {
   images: { url: string }[];
-  // Ajoutez d'autres propriétés de l'album si nécessaire
 }
 export interface Artist {
   artists: { name: string }[];

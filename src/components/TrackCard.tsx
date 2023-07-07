@@ -1,22 +1,26 @@
 import spotifyPlayer from "../assets/Images/SpotifyPlayButton.png";
 import { ActionMusic } from "../actions/ActionMusic";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { contextMusic } from "../hooks/MusicPlayContext";
 import { track } from "../types/track";
 import React, { useMemo } from "react";
 
 type Props = {
-  imageArtist: string;
+  imageArtist?: string;
   artistName?: string;
-  image?: string;
   title: string;
   uri: string;
   track: track;
 };
 
-const TrackCard = ({ title, artistName, track, image }: Props) => {
+const TrackCard = ({ title, artistName, track }: Props) => {
   const { playTrack } = ActionMusic();
-  const { elapsedMs, setElapsedMs } = useContext(contextMusic);
+
+  useEffect(() => {
+    console.log("====================================");
+    console.log(track);
+    console.log("====================================");
+  }, [track]);
 
   const play = () => {
     playTrack(track, 0);
@@ -37,10 +41,12 @@ const TrackCard = ({ title, artistName, track, image }: Props) => {
           flex: 1,
         }}
       >
-        <img
-          style={{ height: "80px", width: "100px", marginRight: "50px" }}
-          src={image}
-        />
+        {track.album?.images[0]?.url !== undefined && (
+          <img
+            style={{ height: "80px", width: "100px", marginRight: "50px" }}
+            src={track.album.images[0]?.url}
+          />
+        )}
 
         <p
           style={{

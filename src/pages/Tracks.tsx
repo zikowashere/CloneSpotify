@@ -14,9 +14,9 @@ const Tracks = () => {
   useEffect(() => {
     setElapsedMs(0);
     console.log("====================================");
-    console.log("track changed");
+    console.log("track array", trackArray);
     console.log("====================================");
-  }, [musicPlay]);
+  }, [musicPlay, trackArray]);
 
   return (
     <div
@@ -34,12 +34,7 @@ const Tracks = () => {
         }}
       >
         {trackArray.map((track: track) => (
-          <TrackCard
-            title={track.name}
-            uri={track?.uri}
-            track={track}
-            image={track.album.images[0]?.url}
-          />
+          <TrackCard title={track.name} uri={track?.uri} track={track} />
         ))}
       </div>
     </div>
