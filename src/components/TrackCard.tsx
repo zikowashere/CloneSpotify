@@ -1,7 +1,7 @@
 import spotifyPlayer from "../assets/Images/SpotifyPlayButton.png";
 import { ActionMusic } from "../actions/ActionMusic";
 import { track } from "../types/track";
-import React, { useEffect } from "react";
+import React from "react";
 
 type Props = {
   imageArtist?: string;
