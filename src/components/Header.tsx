@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useContext, useEffect, useState } from "react";
+import React, { ChangeEvent, useContext, useEffect } from "react";
 import { headerStyle } from "../assets/style/Header";
 import { SearchContext } from "../hooks/SearchContext";
 import { useSearch } from "../hooks/useSearch";

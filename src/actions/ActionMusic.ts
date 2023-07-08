@@ -17,7 +17,9 @@ export const ActionMusic = () => {
   useMemo(() => {
     setElapsedMs(0);
   }, [musicPlay]);
-  useEffect(() => {}, [elapsedMs]);
+  useEffect(() => {
+    /* */
+  }, [elapsedMs]);
 
   const playTrack = async (track: track | undefined, elapsedMs: number) => {
     setIsPlaying(true);

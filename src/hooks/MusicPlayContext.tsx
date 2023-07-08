@@ -17,9 +17,14 @@ export type ContextTypeMusic = {
 export const contextMusic = React.createContext<ContextTypeMusic>({
   musicPlay: {
     name: "",
-    album: { images: { url: "" }[""] },
+    album: { id: "", name: "string", images: [], artists: [] },
     uri: "",
     duration_ms: 0,
+    artists: [],
+    track: {
+      album: { id: "", name: "", images: [], artists: [] },
+      uri: "",
+    },
   },
   isPlaying: false,
   stopStratTrack: false,

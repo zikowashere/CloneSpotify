@@ -22,9 +22,16 @@ const ChoiceSearchBar = () => {
     track.setTrack([]);
     showScreenContext.setShowScreen("");
     track.setShowPlaylist(false);
-    setAlbum({});
+    setAlbum({
+      id: "",
+      name: "",
+      images: [],
+      artists: [],
+    });
   };
-  useEffect(() => {}, [search, showScreenContext.showScreen]);
+  useEffect(() => {
+    /* */
+  }, [search, showScreenContext.showScreen]);
   return (
     <div
       style={{

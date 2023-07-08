@@ -15,6 +15,7 @@ type Props = {
   durationTrack: number;
 };
 const PlayerTrack = ({ track, durationTrack }: Props) => {
+  const [areEmpty, setAreEmpty] = useState(false);
   const [imagePlayerTrack, setImagePlayerTrack] = useState<string | undefined>(
     ""
   );
@@ -42,7 +43,12 @@ const PlayerTrack = ({ track, durationTrack }: Props) => {
   useEffect(() => {
     setElapsedMs(0);
     setDurationOfTrack(formatTime(durationTrack));
-    Object.keys(album).length > 0
+    setAreEmpty(
+      Object.values(album).some((valeur) => {
+        return valeur === null || valeur === undefined || valeur === "";
+      })
+    );
+    areEmpty
       ? setImagePlayerTrack(album?.images[0]?.url)
       : setImagePlayerTrack(musicPlay?.album?.images[0]?.url);
   }, [musicPlay]);
