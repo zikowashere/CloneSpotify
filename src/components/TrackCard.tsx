@@ -1,7 +1,7 @@
 import spotifyPlayer from "../assets/Images/SpotifyPlayButton.png";
 import { ActionMusic } from "../actions/ActionMusic";
 import { track } from "../types/track";
-import React from "react";
+import React, { useEffect } from "react";
 
 type Props = {
   imageArtist?: string;
@@ -17,6 +17,7 @@ const TrackCard = ({ title, artistName, track }: Props) => {
   const play = () => {
     playTrack(track, 0);
   };
+
   return (
     <div
       style={{
@@ -33,7 +34,7 @@ const TrackCard = ({ title, artistName, track }: Props) => {
           flex: 1,
         }}
       >
-        {track.album?.images[0]?.url !== undefined && (
+        {track.album?.images[0]?.url && (
           <img
             style={{ height: "80px", width: "100px", marginRight: "50px" }}
             src={track.album.images[0]?.url}

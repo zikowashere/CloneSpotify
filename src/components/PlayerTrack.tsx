@@ -26,7 +26,7 @@ const PlayerTrack = ({ track, durationTrack }: Props) => {
     setStopStratTrack,
     setElapsedMs,
   } = useContext(contextMusic);
-  const { album } = useContext(SearchContext);
+  const { album, setAlbum } = useContext(SearchContext);
   const { backTrack, nextTrack, getCurrentPlaybackTime } = ActionMusic();
   const [durationTime, setDurationTime] = useState<string | undefined>("0:00");
   const [durationOfTrack, setDurationOfTrack] = useState<string>();
@@ -43,15 +43,18 @@ const PlayerTrack = ({ track, durationTrack }: Props) => {
   useEffect(() => {
     setElapsedMs(0);
     setDurationOfTrack(formatTime(durationTrack));
+
     setAreEmpty(
       Object.values(album).some((valeur) => {
         return valeur === null || valeur === undefined || valeur === "";
       })
     );
-    areEmpty
+    console.log("are empty ", areEmpty);
+
+    !areEmpty
       ? setImagePlayerTrack(album?.images[0]?.url)
       : setImagePlayerTrack(musicPlay?.album?.images[0]?.url);
-  }, [musicPlay]);
+  }, [musicPlay, album]);
 
   useEffect(() => {
     let intervalId;

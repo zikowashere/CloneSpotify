@@ -13,6 +13,6 @@ export type track = {
   album: album;
   uri: string;
   duration_ms: number;
-  artists?: Artist[];
-  track: { album: album; uri: string };
+  artists: Artist[];
+  track: track;
 };
