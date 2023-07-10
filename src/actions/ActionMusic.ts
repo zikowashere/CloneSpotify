@@ -18,7 +18,7 @@ export const ActionMusic = () => {
     setElapsedMs(0);
   }, [musicPlay]);
   useEffect(() => {
-    /* */
+    /** */
   }, [elapsedMs]);
 
   const playTrack = async (track: track | undefined, elapsedMs: number) => {
@@ -58,9 +58,19 @@ export const ActionMusic = () => {
     await fetch(`https://api.spotify.com/v1/me/player/next`, {
       method: "POST",
       headers: { Authorization: `Bearer ${accessToken}` },
-    }).then((response) => {
-      console.log(response);
-    });
+    })
+      .then((response) => {
+        console.log(
+          "Piste suivante jouée avec succès !",
+          response.json().then((data) => console.log("next track", data))
+        );
+      })
+      .catch((error) => {
+        console.error(
+          "Erreur lors de la lecture de la piste suivante :",
+          error.response.data
+        );
+      });
   };
 
   const getCurrentPlaybackTime = async () => {

@@ -26,7 +26,7 @@ const PlayerTrack = ({ track, durationTrack }: Props) => {
     setStopStratTrack,
     setElapsedMs,
   } = useContext(contextMusic);
-  const { album, setAlbum } = useContext(SearchContext);
+  const { album } = useContext(SearchContext);
   const { backTrack, nextTrack, getCurrentPlaybackTime } = ActionMusic();
   const [durationTime, setDurationTime] = useState<string | undefined>("0:00");
   const [durationOfTrack, setDurationOfTrack] = useState<string>();
