@@ -20,6 +20,7 @@ const ArtistCard = ({ imageArtist, title, idArtist }: Props) => {
 
   return (
     <button
+      id="artist"
       style={{ cursor: "pointer", width: "100%", backgroundColor: "black" }}
       onClick={() => TracksByArtistId()}
     >

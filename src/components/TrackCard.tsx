@@ -67,6 +67,7 @@ const TrackCard = ({ title, artistName, track }: Props) => {
 
         <div>
           <button
+            id="playButton"
             style={{
               backgroundColor: "black",
               cursor: "pointer",
