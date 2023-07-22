@@ -22,16 +22,15 @@ const ChoiceSearchBar = () => {
     track.setTrack([]);
     showScreenContext.setShowScreen("");
     track.setShowPlaylist(false);
+  };
+  useEffect(() => {
     setAlbum({
       id: "",
       name: "",
       images: [],
       artists: [],
     });
-  };
-  useEffect(() => {
-    /* */
-  }, [search, showScreenContext.showScreen]);
+  }, [showScreenContext.showScreen]);
   return (
     <div
       style={{
@@ -81,12 +80,6 @@ const ChoiceSearchBar = () => {
             onClick={() => {
               showScreenContext.setShowScreen("artists");
               showScreenContext.setIsClicked(true);
-              setAlbum({
-                id: "",
-                name: "",
-                images: [],
-                artists: [],
-              });
             }}
           >
             Artistes
@@ -101,12 +94,6 @@ const ChoiceSearchBar = () => {
             onClick={() => {
               showScreenContext.setShowScreen("titres");
               showScreenContext.setIsClicked(true);
-              setAlbum({
-                id: "",
-                name: "",
-                images: [],
-                artists: [],
-              });
             }}
           >
             Titres
@@ -122,12 +109,6 @@ const ChoiceSearchBar = () => {
               showScreenContext.setShowScreen("albums");
               AlbumOfArtist();
               showScreenContext.setIsClicked(true);
-              setAlbum({
-                id: "",
-                name: "",
-                images: [],
-                artists: [],
-              });
             }}
           >
             Albums

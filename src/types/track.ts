@@ -16,3 +16,7 @@ export type track = {
   artists: Artist[];
   track: track;
 };
+export type tracks = {
+  tracks: track[];
+  items: any[];
+};

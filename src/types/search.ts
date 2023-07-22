@@ -1,8 +1,8 @@
 import { artists } from "./artist";
-import { track } from "./track";
+import { track, tracks } from "./track";
 
 export type search = {
   artists: artists;
   playlists: never[];
-  tracks: track[];
+  tracks: tracks;
 };

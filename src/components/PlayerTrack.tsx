@@ -41,19 +41,12 @@ const PlayerTrack = ({ track, durationTrack }: Props) => {
   };
 
   useEffect(() => {
+    console.log("====================================");
+    console.log("track who is playing is ", track);
+    console.log("====================================");
     setElapsedMs(0);
     setDurationOfTrack(formatTime(durationTrack));
-
-    setAreEmpty(
-      Object.values(album).some((valeur) => {
-        return valeur === null || valeur === undefined || valeur === "";
-      })
-    );
-    console.log("are empty ", areEmpty);
-
-    !areEmpty
-      ? setImagePlayerTrack(album?.images[0]?.url)
-      : setImagePlayerTrack(musicPlay?.album?.images[0]?.url);
+    setImagePlayerTrack(track?.album?.images[0]?.url);
   }, [musicPlay, album]);
 
   useEffect(() => {

@@ -17,16 +17,12 @@ import { contextApp } from "../hooks/ContextApp";
 
 const Dashboard = () => {
   const searchPlaylist = useSearch();
-  const showScreenContext = useContext(contextApp);
 
-  const { musicPlay, isPlaying, setElapsedMs, elapsedMs } =
-    useContext(contextMusic);
+  const { musicPlay, isPlaying, setElapsedMs } = useContext(contextMusic);
   const { track, showPlayslist } = useContext(TrackContext);
 
   useMemo(() => {
     setElapsedMs(0);
-    searchPlaylist.getPlayListUser();
-    searchPlaylist.getEpisodesUser();
   }, [musicPlay]);
 
   return (
