@@ -16,6 +16,7 @@ const PlaylistCard = ({ imagePlaylsit, title, link }: Props) => {
 
   return (
     <button
+      id="playlist"
       style={{ backgroundColor: "black", marginBottom: "3%" }}
       onClick={() => getTracksPlayList(link)}
     >
