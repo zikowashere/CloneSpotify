@@ -1,8 +1,5 @@
 import { album } from "./album";
 
-export interface Album {
-  images: { url: string }[];
-}
 export interface Artist {
   artists: { name: string }[];
   name: string;
@@ -19,4 +16,5 @@ export type track = {
 export type tracks = {
   tracks: track[];
   items: any[];
+  href: string;
 };

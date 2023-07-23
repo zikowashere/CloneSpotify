@@ -3,3 +3,6 @@ export type playlist = {
   images: { url: string }[];
   tracks: { href: string };
 };
+export type playlists = {
+  items: never[];
+};

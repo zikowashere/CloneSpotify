@@ -13,7 +13,7 @@ const Playlists = () => {
   useEffect(() => {
     playlist.getPlayListUser();
     showScreenContext.setIsClicked(false);
-  }, [showScreenContext]);
+  }, [playlist, showScreenContext]);
 
   return (
     <div

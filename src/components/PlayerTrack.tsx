@@ -15,7 +15,6 @@ type Props = {
   durationTrack: number;
 };
 const PlayerTrack = ({ track, durationTrack }: Props) => {
-  const [areEmpty, setAreEmpty] = useState(false);
   const [imagePlayerTrack, setImagePlayerTrack] = useState<string | undefined>(
     ""
   );
@@ -41,16 +40,13 @@ const PlayerTrack = ({ track, durationTrack }: Props) => {
   };
 
   useEffect(() => {
-    console.log("====================================");
-    console.log("track who is playing is ", track);
-    console.log("====================================");
     setElapsedMs(0);
     setDurationOfTrack(formatTime(durationTrack));
     setImagePlayerTrack(track?.album?.images[0]?.url);
   }, [musicPlay, album]);
 
   useEffect(() => {
-    let intervalId;
+    let intervalId: number | undefined;
     if (stopStratTrack && elapsedMs < durationTrack) {
       intervalId = setInterval(() => {
         getCurrentPlaybackTime();
