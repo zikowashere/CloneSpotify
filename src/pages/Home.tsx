@@ -14,11 +14,6 @@ const Home = () => {
   const showScreenContext = useContext(contextApp);
   const searchPlaylist = useSearch();
 
-  useEffect(() => {
-    searchPlaylist.getPlayListUser();
-    console.log("search is ", search);
-  }, [musicContext.isPlaying, showScreenContext.showScreen]);
-
   return (
     <div style={{ width: "100%" }}>
       {showScreenContext.showScreen !== "" ? (

@@ -16,7 +16,7 @@ describe('test Search fonctionalities', () => {
   //     cy.get('#playButton').click();
   //   });
   it('search for tracks', () => {
-    cy.get('input[type="text"]').type('ouenza');
+    cy.get('input[type="text"]').type('lbenj');
     cy.get('button').contains('Titres').click();
     cy.get('#playButton').click();
   });

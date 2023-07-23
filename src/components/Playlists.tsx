@@ -3,12 +3,15 @@ import { SearchContext } from "../hooks/SearchContext";
 import PlaylistCard from "./PlaylistCard";
 import { contextApp } from "../hooks/ContextApp";
 import { playlist } from "../types/playlist";
+import { useSearch } from "../hooks/useSearch";
 
 const Playlists = () => {
   const search = useContext(SearchContext);
+  const playlist = useSearch();
   const showScreenContext = useContext(contextApp);
 
   useEffect(() => {
+    playlist.getPlayListUser();
     showScreenContext.setIsClicked(false);
   }, [showScreenContext]);
 
