@@ -3,14 +3,16 @@ import { SearchContext } from "../hooks/SearchContext";
 import PlaylistCard from "./PlaylistCard";
 import { useSearch } from "../hooks/useSearch";
 import { episode } from "../types/episode";
+import { contextApp } from "../hooks/ContextApp";
 
 const Episodes = () => {
   const search = useContext(SearchContext);
   const searchPlaylist = useSearch();
+  const showScreenContext = useContext(contextApp);
 
   useEffect(() => {
     searchPlaylist.getEpisodesUser();
-  });
+  }, []);
 
   return (
     <div

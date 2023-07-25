@@ -26,7 +26,11 @@ export type SearchContextType = {
 };
 
 export const SearchContext = createContext<SearchContextType>({
-  search: { artists: { artists: [], items: [] }, playlists: [], tracks: [] },
+  search: {
+    artists: { artists: [], items: [] },
+    playlists: { items: [] },
+    tracks: { tracks: [], href: "", items: [] },
+  },
   albums: [],
   setAlbums: () => {
     // Faites rien ici

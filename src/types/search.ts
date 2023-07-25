@@ -1,9 +1,9 @@
 import { artists } from "./artist";
-import { playlists } from "./playlist";
-import { track, tracks } from "./track";
+import { playlist } from "./playlist";
+import { track } from "./track";
 
 export type search = {
   artists: artists;
-  playlists: playlists;
-  tracks: tracks;
+  playlists: playlist[];
+  tracks: track[];
 };
