@@ -78,14 +78,14 @@ export default function Login() {
         args) as unknown as Location;
     });
   }
-
-  async function refreshToken(refreshToken) {
-    const codeVerifier = localStorage.getItem("code_verifier");
+  async function refreshToken() {
+    const refresh_token = localStorage.getItem("refresh_token");
+    const code_verifier = localStorage.getItem("code_verifier");
     const body = new URLSearchParams({
       grant_type: "refresh_token",
-      refresh_token: refreshToken,
+      refresh_token: refresh_token,
       client_id: clientId,
-      code_verifier: codeVerifier,
+      code_verifier: code_verifier,
     });
 
     const response = await fetch("https://accounts.spotify.com/api/token", {
@@ -108,21 +108,28 @@ export default function Login() {
     if (code && isRedirect) {
       setIsRedirect(false);
       setToken(code);
-    } else {
-      const storedRefreshToken = localStorage.getItem("refresh_token");
-      if (storedRefreshToken) {
-        refreshToken(storedRefreshToken)
+    }
+    // Vérifier si l'access token a expiré à chaque rendu de la page
+    const checkTokenExpiration = setInterval(() => {
+      const access_token = localStorage.getItem("access_token");
+
+      // Si l'access token a expiré, effectuer le processus de rafraîchissement
+      if (!access_token) {
+        refreshToken()
           .then(() => {
-            window.location.href = redirectAfterAuthtentication;
+            // Après avoir obtenu le nouveau access token, vous pouvez effectuer des requêtes à l'API Spotify ici
           })
           .catch((error) => {
-            console.error("Erreur lors du rafraîchissement du jeton :", error);
+            console.error("Erreur lors du rafraîchissement du token :", error);
           });
       }
-    }
+    }, 60000); // Vérifier toutes les 60 secondes
+
+    // Nettoyer l'intervalle lorsque le composant est démonté pour éviter des fuites de mémoire
+    return () => clearInterval(checkTokenExpiration);
   }, []);
 
-  async function setToken(code) {
+  async function setToken(code: string) {
     const code_verifier = localStorage.getItem("code_verifier");
     const body = new URLSearchParams({
       grant_type: "authorization_code",
