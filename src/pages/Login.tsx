@@ -78,55 +78,12 @@ export default function Login() {
         args) as unknown as Location;
     });
   }
-  async function refreshToken() {
-    const refresh_token = localStorage.getItem("refresh_token");
-    const code_verifier = localStorage.getItem("code_verifier");
-    const body = new URLSearchParams({
-      grant_type: "refresh_token",
-      refresh_token: refresh_token,
-      client_id: clientId,
-      code_verifier: code_verifier,
-    });
-
-    const response = await fetch("https://accounts.spotify.com/api/token", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-      },
-      body: body,
-    });
-
-    if (!response.ok) {
-      throw new Error("HTTP status " + response.status);
-    }
-
-    const data = await response.json();
-    localStorage.setItem("access_token", data.access_token);
-  }
 
   useEffect(() => {
     if (code && isRedirect) {
       setIsRedirect(false);
       setToken(code);
     }
-    // Vérifier si l'access token a expiré à chaque rendu de la page
-    const checkTokenExpiration = setInterval(() => {
-      const access_token = localStorage.getItem("access_token");
-
-      // Si l'access token a expiré, effectuer le processus de rafraîchissement
-      if (!access_token) {
-        refreshToken()
-          .then(() => {
-            // Après avoir obtenu le nouveau access token, vous pouvez effectuer des requêtes à l'API Spotify ici
-          })
-          .catch((error) => {
-            console.error("Erreur lors du rafraîchissement du token :", error);
-          });
-      }
-    }, 60000); // Vérifier toutes les 60 secondes
-
-    // Nettoyer l'intervalle lorsque le composant est démonté pour éviter des fuites de mémoire
-    return () => clearInterval(checkTokenExpiration);
   }, []);
 
   async function setToken(code: string) {
@@ -154,6 +111,9 @@ export default function Login() {
     const data = await response.json();
     localStorage.setItem("access_token", data.access_token);
     localStorage.setItem("refresh_token", data.refresh_token);
+    localStorage.setItem("expires_in", data.expires_in);
+    const currentTime = Math.floor(Date.now() / 1000); // Convertir en secondes
+    localStorage.setItem("token_timestamp", currentTime.toString());
     window.location.href = redirectAfterAuthtentication;
   }
   async function connect() {
