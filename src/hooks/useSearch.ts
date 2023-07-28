@@ -1,9 +1,21 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { SearchContext } from "./SearchContext";
 import { accessToken } from "../../global";
 
 export const useSearch = () => {
   const search = useContext(SearchContext);
+  const [userId, setUserId] = useState("");
+
+  async function getUserId() {
+    await fetch(`https://api.spotify.com/v1/me`, {
+      method: "GET",
+      headers: { Authorization: `Bearer ${accessToken}` },
+    }).then((response) => {
+      response.json().then(async (res) => {
+        setUserId(res.id);
+      });
+    });
+  }
 
   async function searchKeyWord(keyWord: string) {
     await fetch(
@@ -99,7 +111,9 @@ export const useSearch = () => {
       console.log("Une erreur s'est produite :", error);
     }
   }
-
+  useMemo(() => {
+    getUserId();
+  }, [userId]);
   return {
     searchKeyWord,
     search,

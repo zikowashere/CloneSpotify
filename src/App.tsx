@@ -6,9 +6,11 @@ import { MusicPlayProvider, contextMusic } from "./hooks/MusicPlayContext";
 import Callback from "./pages/Callback";
 import React, { useMemo, useContext } from "react";
 import { ContextAppProvider } from "./hooks/ContextApp";
+import { ActionInitializer } from "./actions/ActionInitializer";
 
 function App() {
   const { musicPlay, setElapsedMs } = useContext(contextMusic);
+  const { getUser } = ActionInitializer();
   useMemo(() => {
     setElapsedMs(0);
   }, [musicPlay]);

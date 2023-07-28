@@ -112,7 +112,7 @@ export default function Login() {
     localStorage.setItem("access_token", data.access_token);
     localStorage.setItem("refresh_token", data.refresh_token);
     localStorage.setItem("expires_in", data.expires_in);
-    const currentTime = Math.floor(Date.now() / 1000); // Convertir en secondes
+    const currentTime = Math.floor(Date.now() / 1000);
     localStorage.setItem("token_timestamp", currentTime.toString());
     window.location.href = redirectAfterAuthtentication;
   }

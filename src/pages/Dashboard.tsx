@@ -15,11 +15,14 @@ import Episodes from "../components/Episodes";
 import React from "react";
 import jwt_decode from "jwt-decode";
 import { API_CLIENT } from "../../env.config";
+import { ActionInitializer } from "../actions/ActionInitializer";
+import { contextApp } from "../hooks/ContextApp";
 
 const Dashboard = () => {
   const searchPlaylist = useSearch();
   const { musicPlay, isPlaying, setElapsedMs } = useContext(contextMusic);
   const { track, showPlayslist } = useContext(TrackContext);
+  const contextAll = useContext(contextApp);
 
   function getTimeRemaining() {
     const expires_in = localStorage.getItem("expires_in");
@@ -48,41 +51,54 @@ const Dashboard = () => {
     return currentTime >= expiresInSeconds;
   }
 
-  async function refreshToken() {
-    const clientId = API_CLIENT;
-    const refresh_token = localStorage.getItem("refresh_token");
+  // Fonction pour obtenir un nouvel access token en utilisant le token de rafraîchissement
+  const refreshToken = async () => {
+    const refreshToken = localStorage.getItem("refreshToken");
     const code_verifier = localStorage.getItem("code_verifier");
+    const clientId = API_CLIENT;
     const body = new URLSearchParams({
       grant_type: "refresh_token",
-      refresh_token: refresh_token,
+      refresh_token: refreshToken,
       client_id: clientId,
       code_verifier: code_verifier,
     });
+    try {
+      const response = await fetch("https://accounts.spotify.com/api/token", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+        },
+        body: body,
+      });
+      const data = await response.json();
+      // Mettez à jour le token d'accès et la date d'expiration dans l'état de votre composant et stockez également les nouvelles valeurs dans votre application (par exemple, dans localStorage)
+      const newAccessToken = data.access_token;
+      const expiresIn = data.expires_in;
+      const expirationTime = Date.now() + expiresIn * 1000;
 
-    const response = await fetch("https://accounts.spotify.com/api/token", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-      },
-      body: body,
-    });
+      localStorage.setItem("accessToken", newAccessToken);
+      localStorage.setItem("expirationTime", expirationTime.toString());
 
-    const data = await response.json();
-    localStorage.setItem("access_token", data.access_token);
-  }
+      // Retournez le nouveau token d'accès
+      return newAccessToken;
+    } catch (error) {
+      // Gérez les erreurs éventuelles lors de l'obtention du nouveau token d'accès
+      console.error(
+        "Erreur lors de l'obtention du nouvel access token :",
+        error
+      );
+      return null;
+    }
+  };
 
-  useMemo(() => {
-    setElapsedMs(0);
-  }, [musicPlay]);
   useEffect(() => {
     getTimeRemaining() === 0 && refreshToken();
   });
 
   return (
     <div>
-      <div>
-        <Header />
-      </div>
+      <Header />
+
       <div>
         <ChoiceSearchBar />
       </div>

@@ -1,19 +1,22 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useMemo } from "react";
 import { SearchContext } from "../hooks/SearchContext";
 import PlaylistCard from "./PlaylistCard";
 import { contextApp } from "../hooks/ContextApp";
 import { playlist } from "../types/playlist";
 import { useSearch } from "../hooks/useSearch";
+import { ActionInitializer } from "../actions/ActionInitializer";
 
 const Playlists = () => {
   const search = useContext(SearchContext);
   const playlist = useSearch();
+  const { getUser } = ActionInitializer();
+
   const showScreenContext = useContext(contextApp);
 
-  useEffect(() => {
+  useMemo(() => {
+    getUser();
     playlist.getPlayListUser();
-    showScreenContext.setIsClicked(false);
-  }, []);
+  }, [showScreenContext.isClickedShow]);
 
   return (
     <div
