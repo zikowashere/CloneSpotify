@@ -36,7 +36,8 @@ const ChoiceSearchBar = () => {
       style={{
         display: "flex",
         flexDirection: "row",
-        marginBottom: "5%",
+        marginBottom: "2%",
+        marginTop: "5%",
       }}
     >
       <div

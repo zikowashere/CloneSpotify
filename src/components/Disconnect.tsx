@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Avatar from "./AvatarName";
 type Props = {
   userName: string;
 };
@@ -21,20 +22,26 @@ const Disconnect = ({ userName }: Props) => {
   return (
     <div style={{ marginTop: "2%", marginRight: "3%" }}>
       {/* Bouton stylé pour le menu déroulant */}
-      <button
-        onClick={toggleMenu}
-        style={{
-          width: "150px",
-          backgroundColor: "gray",
-          color: "#fff",
-          padding: "10px 20px",
-          border: "none",
-          borderRadius: "40px",
-          cursor: "pointer",
-        }}
-      >
-        {userName}
-      </button>
+      <div>
+        <button
+          onClick={toggleMenu}
+          style={{
+            height: "50%",
+            display: "flex",
+            flexDirection: "row",
+            width: "200px",
+            backgroundColor: "gray",
+            color: "#fff",
+            padding: "10px 20px",
+            border: "none",
+            borderRadius: "40px",
+            cursor: "pointer",
+          }}
+        >
+          <Avatar name={userName} />
+          <p>{userName}</p>
+        </button>
+      </div>
 
       {/* Afficher le contenu du menu déroulant si isMenuOpen est vrai */}
       {isMenuOpen && (
@@ -57,7 +64,7 @@ const Disconnect = ({ userName }: Props) => {
               onClick={DisconnectFromApp}
               style={{ padding: "10px", cursor: "pointer" }}
             >
-              Se déconnecter
+              Logout
             </li>
           </ul>
         </div>
