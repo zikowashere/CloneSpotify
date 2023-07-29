@@ -5,8 +5,8 @@ import { contextApp } from "../hooks/ContextApp";
 export const ActionInitializer = () => {
   const contextAll = useContext(contextApp);
 
-  const getUser = async () => {
-    await fetch("https://api.spotify.com/v1/me", {
+  const getUser = () => {
+    fetch("https://api.spotify.com/v1/me", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
