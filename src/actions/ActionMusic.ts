@@ -60,10 +60,8 @@ export const ActionMusic = () => {
       headers: { Authorization: `Bearer ${accessToken}` },
     })
       .then((response) => {
-        console.log(
-          "Piste suivante jouée avec succès !",
-          response.json().then((data) => console.log("next track", data))
-        );
+        console.log("Piste suivante jouée avec succès !");
+        response.json().then((data) => console.log("next track", data));
       })
       .catch((error) => {
         console.error(

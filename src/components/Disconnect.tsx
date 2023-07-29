@@ -26,7 +26,7 @@ const Disconnect = ({ userName }: Props) => {
         <button
           onClick={toggleMenu}
           style={{
-            height: "50%",
+            height: "10%",
             display: "flex",
             flexDirection: "row",
             width: "200px",

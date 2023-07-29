@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { API_CLIENT } from "../../env.config";
-import logo from "../assets/Images/logo.png";
+import logo from "../assets/Images/background spotify.jpeg";
+import { redirectAfterAuthtentication, redirectUri } from "../../global";
 
 export default function Login() {
   const clientId = API_CLIENT;
-  const redirectUri = "http://localhost:5173/callback/";
-  const redirectAfterAuthtentication = "http://localhost:5173/";
+  const redirectUriApp = redirectUri;
+  const redirectAfterAuthtenticationApp = redirectAfterAuthtentication;
   const urlParams = new URLSearchParams(window.location.search);
   const code = urlParams.get("code");
   const [isRedirect, setIsRedirect] = useState(true);
@@ -91,7 +92,7 @@ export default function Login() {
     const body = new URLSearchParams({
       grant_type: "authorization_code",
       code: code,
-      redirect_uri: redirectUri,
+      redirect_uri: redirectUriApp,
       client_id: clientId,
       code_verifier: code_verifier,
     });
@@ -114,7 +115,7 @@ export default function Login() {
     localStorage.setItem("expires_in", data.expires_in);
     const currentTime = Math.floor(Date.now() / 1000);
     localStorage.setItem("token_timestamp", currentTime.toString());
-    window.location.href = redirectAfterAuthtentication;
+    window.location.href = redirectAfterAuthtenticationApp;
   }
   async function connect() {
     await login();
@@ -154,7 +155,7 @@ export default function Login() {
         onClick={() => connect()}
       >
         {" "}
-        Login With SiS Music
+        Log In
       </button>
     </div>
   );
