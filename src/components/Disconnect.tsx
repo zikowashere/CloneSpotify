@@ -64,7 +64,7 @@ const Disconnect = ({ userName }: Props) => {
               onClick={DisconnectFromApp}
               style={{ padding: "10px", cursor: "pointer" }}
             >
-              Logout
+              Log out
             </li>
           </ul>
         </div>

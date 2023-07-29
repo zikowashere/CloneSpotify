@@ -39,7 +39,7 @@ const BestArtistTrackResult = ({ artist }: Props) => {
         style={{
           height: "700px",
           overflowY: "scroll",
-          width: "50%",
+          width: "100%",
         }}
       >
         {topTrack.map((trackOfArtsit: track) => (

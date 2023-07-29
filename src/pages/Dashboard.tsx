@@ -23,6 +23,7 @@ const Dashboard = () => {
   const { musicPlay, isPlaying, setElapsedMs } = useContext(contextMusic);
   const { track, showPlayslist } = useContext(TrackContext);
   const contextAll = useContext(contextApp);
+  const { getUser } = ActionInitializer();
 
   function getTimeRemaining() {
     const expires_in = localStorage.getItem("expires_in");
@@ -50,6 +51,7 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
+    getUser();
     getTimeRemaining() === 0 && DisconnectFromApp();
   }, []);
 

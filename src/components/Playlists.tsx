@@ -14,7 +14,6 @@ const Playlists = () => {
   const showScreenContext = useContext(contextApp);
 
   useMemo(() => {
-    getUser();
     playlist.getPlayListUser();
   }, [showScreenContext.isClickedShow]);
 
