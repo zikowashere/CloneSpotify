@@ -73,8 +73,12 @@ type Props = {
 export const SearchProvider = ({ children }: Props) => {
   const [search, setSearch] = useState<search>({
     artists: { artists: [], items: [] },
-    playlists: [],
-    tracks: [],
+    playlists: { items: [] },
+    tracks: {
+      tracks: [],
+      items: [],
+      href: "",
+    },
   });
   const [playlist, setPlaylist] = useState<never[]>([]);
   const [episode, setEpisode] = useState<never[]>([]);

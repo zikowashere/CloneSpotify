@@ -15,7 +15,6 @@ export default function Login() {
     let text = "";
     const possible =
       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
     for (let i = 0; i < length; i++) {
       text += possible.charAt(Math.floor(Math.random() * possible.length));
     }
@@ -42,7 +41,7 @@ export default function Login() {
   }
 
   async function login() {
-    const codeVerifierStorage = generateRandomString(128);
+    const codeVerifierStorage: string | undefined = generateRandomString(128);
 
     generateCodeChallenge(codeVerifierStorage).then((codeChallenge) => {
       const state = generateRandomString(16);
@@ -62,13 +61,14 @@ export default function Login() {
         "playlist-modify-public",
         "user-read-playback-position",
       ];
+      const scopeString = scope.join(" ");
 
       localStorage.setItem("code_verifier", codeVerifierStorage);
 
       const args = new URLSearchParams({
         response_type: "code",
         client_id: clientId,
-        scope: scope,
+        scope: scopeString,
         redirect_uri: redirectUri,
         state: state,
         code_challenge_method: "S256",
@@ -89,14 +89,21 @@ export default function Login() {
 
   async function setToken(code: string) {
     const code_verifier = localStorage.getItem("code_verifier");
+    // Utilisez une condition pour gérer le cas où 'code_verifier' est null ou undefined
+    const verifier = code_verifier !== null ? code_verifier : undefined;
+
+    // Créez l'objet 'body' en n'incluant que les propriétés non undefined et non null
     const body = new URLSearchParams({
       grant_type: "authorization_code",
-      code: code,
-      redirect_uri: redirectUriApp,
-      client_id: clientId,
-      code_verifier: code_verifier,
+      code: "votre_code",
+      redirect_uri: "votre_redirect_uri",
+      client_id: "votre_client_id",
     });
 
+    // Ajoutez la propriété 'code_verifier' uniquement si elle n'est pas 'undefined'
+    if (verifier !== undefined) {
+      body.append("code_verifier", verifier);
+    }
     const response = await fetch("https://accounts.spotify.com/api/token", {
       method: "POST",
       headers: {

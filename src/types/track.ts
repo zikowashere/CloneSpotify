@@ -15,6 +15,6 @@ export type track = {
 };
 export type tracks = {
   tracks: track[];
-  items: unknown[];
+  items: never[];
   href: string;
 };
