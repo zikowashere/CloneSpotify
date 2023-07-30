@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useContext, useEffect, useMemo } from "react";
-import { headerStyle } from "../assets/style/Header";
+import { styleHeader, styleSearch } from "../assets/style/Header";
 import { SearchContext } from "../hooks/SearchContext";
 import { useSearch } from "../hooks/useSearch";
 import spotifyLogo from "../assets/Images/spotifyLogo.jpeg";
@@ -19,11 +19,16 @@ const Header = () => {
   };
 
   useEffect(() => {
-    search.keyword === "" && search.setSearch([]);
+    search.keyword === "" &&
+      search.setSearch({
+        artists: { artists: [], items: [] },
+        playlists: { items: [] },
+        tracks: { tracks: [], href: "", items: [] },
+      });
   }, [search]);
 
   return (
-    <div style={headerStyle.styleHeader}>
+    <div style={styleHeader}>
       <img
         style={{
           height: "70px",
@@ -36,7 +41,7 @@ const Header = () => {
         type="text"
         value={search.keyword}
         placeholder="Que souhaitez-vous écouter? "
-        style={headerStyle.styleSearch}
+        style={styleSearch}
         title="Search"
         onChange={(e) => searchForKeyWord(e)}
       />
