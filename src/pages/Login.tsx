@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { API_CLIENT } from "../../env.config";
+import { API_CLIENT } from "../../env";
 import logo from "../assets/Images/background spotify.jpeg";
 import { redirectAfterAuthtentication, redirectUri } from "../../global";
 

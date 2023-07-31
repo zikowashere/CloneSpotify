@@ -1,8 +1,8 @@
 import { useState } from "react";
 
 export const accessToken = localStorage.getItem("access_token");
-export const redirectUri = "http://localhost:5173/callback/";
-export const redirectAfterAuthtentication = "http://localhost:5173/";
+export const redirectUri = window.location.origin + "/callback/";
+export const redirectAfterAuthtentication = window.location.origin;
 
 export const useCodeVerifer = () => {
   const [codeVerifer, setCodeVerifer] = useState<string>("");
