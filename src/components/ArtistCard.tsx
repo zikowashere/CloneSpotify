@@ -1,5 +1,9 @@
 import React from "react";
 import { useSearchTrackById } from "../hooks/useSearchTracksByid";
+import {
+  styleButtonArtist,
+  styleTitleArtist,
+} from "../assets/style/ArtistCard";
 
 type Props = {
   imageArtist: string;
@@ -21,7 +25,7 @@ const ArtistCard = ({ imageArtist, title, idArtist }: Props) => {
   return (
     <button
       id="artist"
-      style={{ cursor: "pointer", width: "100%", backgroundColor: "black" }}
+      style={styleButtonArtist}
       onClick={() => TracksByArtistId()}
     >
       <div
@@ -31,17 +35,7 @@ const ArtistCard = ({ imageArtist, title, idArtist }: Props) => {
         }}
       >
         <img style={{ height: "150px", marginRight: "2%" }} src={imageArtist} />
-        <p
-          style={{
-            display: "flex",
-            flex: 1,
-            top: "30%",
-            color: "white",
-            justifyContent: "center",
-          }}
-        >
-          {title}
-        </p>
+        <p style={styleTitleArtist}>{title}</p>
       </div>
     </button>
   );
