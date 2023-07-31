@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { API_CLIENT } from "../../env";
 import logo from "../assets/Images/background spotify.jpeg";
 import { redirectAfterAuthtentication, redirectUri } from "../../global";
 
 export default function Login() {
-  const clientId = API_CLIENT;
+  const clientId = import.meta.env.API_CLIENT;
   const redirectUriApp = redirectUri;
   const redirectAfterAuthtenticationApp = redirectAfterAuthtentication;
   const urlParams = new URLSearchParams(window.location.search);
