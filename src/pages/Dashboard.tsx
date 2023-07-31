@@ -12,9 +12,6 @@ import SideBar from "../components/SideBar";
 import Playlists from "../components/Playlists";
 import TrackPlaylist from "./TrackPlaylist";
 import Episodes from "../components/Episodes";
-import React from "react";
-import jwt_decode from "jwt-decode";
-import { API_CLIENT } from "../../env.config";
 import { ActionInitializer } from "../actions/ActionInitializer";
 import { contextApp } from "../hooks/ContextApp";
 
