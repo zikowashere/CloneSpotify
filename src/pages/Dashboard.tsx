@@ -14,6 +14,7 @@ import TrackPlaylist from "./TrackPlaylist";
 import Episodes from "../components/Episodes";
 import { ActionInitializer } from "../actions/ActionInitializer";
 import { contextApp } from "../hooks/ContextApp";
+import { redirectUri } from "../../global";
 
 const Dashboard = () => {
   const searchPlaylist = useSearch();
@@ -44,7 +45,7 @@ const Dashboard = () => {
   const DisconnectFromApp = () => {
     localStorage.removeItem("access_token");
     localStorage.removeItem("code_verifier");
-    window.location.href = "http://localhost:5173/";
+    window.location.href = redirectUri;
   };
 
   useEffect(() => {
