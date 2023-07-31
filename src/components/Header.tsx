@@ -13,7 +13,7 @@ const Header = () => {
 
   const { searchKeyWord } = useSearch();
 
-  const searchForKeyWord = (e: ChangeEvent) => {
+  const searchForKeyWord = (e: ChangeEvent<HTMLInputElement>) => {
     search.setKeyWord(e.target.value);
     searchKeyWord(search.keyword);
   };

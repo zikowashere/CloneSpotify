@@ -5,12 +5,13 @@ import React, {
   Dispatch,
   SetStateAction,
 } from "react";
+import { track, tracks } from "../types/track";
 
 export type TrackContextType = {
-  track: never[];
+  track: track[];
   topTrack: never[];
   showPlayslist: boolean;
-  setTrack: Dispatch<SetStateAction<never[]>>;
+  setTrack: Dispatch<SetStateAction<track[]>>;
   setShowPlaylist: Dispatch<SetStateAction<boolean>>;
   setTopTrack: Dispatch<SetStateAction<never[]>>;
 };
@@ -35,7 +36,7 @@ type Props = {
 };
 
 export const TrackProvider = ({ children }: Props) => {
-  const [track, setTrack] = useState<never[]>([]);
+  const [track, setTrack] = useState<track[]>([]);
   const [topTrack, setTopTrack] = useState<never[]>([]);
   const [showPlayslist, setShowPlaylist] = useState(false);
 

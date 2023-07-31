@@ -17,7 +17,7 @@ export type ContextTypeMusic = {
 export const contextMusic = React.createContext<ContextTypeMusic>({
   musicPlay: {
     name: "",
-    album: { id: "", name: "string", images: [], artists: [] },
+    album: { id: "", name: "", images: [], artists: [] },
     uri: "",
     duration_ms: 0,
     artists: [],

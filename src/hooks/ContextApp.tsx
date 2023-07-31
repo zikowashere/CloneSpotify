@@ -1,12 +1,13 @@
 /* eslint-disable react-refresh/only-export-components */
 import React, { Dispatch, ReactNode, SetStateAction, useState } from "react";
+import { user } from "../types/user";
 type ContextAppType = {
   showScreen: string;
   isClickedShow: boolean;
-  user: object;
+  user: user;
   setShowScreen: Dispatch<SetStateAction<string>>;
   setIsClicked: Dispatch<SetStateAction<boolean>>;
-  setUser: Dispatch<SetStateAction<object>>;
+  setUser: Dispatch<SetStateAction<user>>;
 };
 type Props = {
   children: ReactNode;
@@ -15,7 +16,7 @@ type Props = {
 export const contextApp = React.createContext<ContextAppType>({
   showScreen: "",
   isClickedShow: false,
-  user: {},
+  user: { display_name: "" },
   setShowScreen: () => {
     /* */
   },
@@ -30,7 +31,7 @@ export const contextApp = React.createContext<ContextAppType>({
 export const ContextAppProvider = ({ children }: Props) => {
   const [showScreen, setShowScreen] = useState<string>("");
   const [isClickedShow, setIsClicked] = useState<boolean>(false);
-  const [user, setUser] = useState<object>({});
+  const [user, setUser] = useState<user>({ display_name: "" });
 
   return (
     <contextApp.Provider

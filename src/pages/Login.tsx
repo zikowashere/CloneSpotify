@@ -95,9 +95,9 @@ export default function Login() {
     // Créez l'objet 'body' en n'incluant que les propriétés non undefined et non null
     const body = new URLSearchParams({
       grant_type: "authorization_code",
-      code: "votre_code",
-      redirect_uri: "votre_redirect_uri",
-      client_id: "votre_client_id",
+      code: code,
+      redirect_uri: redirectUriApp,
+      client_id: clientId,
     });
 
     // Ajoutez la propriété 'code_verifier' uniquement si elle n'est pas 'undefined'

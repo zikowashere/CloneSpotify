@@ -1,17 +1,19 @@
 import { album } from "./album";
-
-export interface Artist {
-  artists: { name: string }[];
-  name: string;
-}
+import { artist } from "./artist";
 
 export type track = {
   name: string;
   album: album;
   uri: string;
   duration_ms: number;
-  artists: Artist[];
-  track: track;
+  artists: artist[];
+  track: {
+    name: string;
+    album: album;
+    uri: string;
+    duration_ms: number;
+    artists: artist[];
+  };
 };
 export type tracks = {
   tracks: track[];

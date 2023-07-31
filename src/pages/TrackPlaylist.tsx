@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { TrackContext } from "../hooks/SearchTracksByArtistContext";
 import TrackCard from "../components/TrackCard";
-import { track } from "../types/track";
+import { track, tracks } from "../types/track";
 
 const TrackPlaylist = () => {
   const track = useContext(TrackContext);
@@ -27,7 +27,7 @@ const TrackPlaylist = () => {
             imageArtist={track.track.album.images[0]?.url}
             uri={track.track.uri}
             artistName={track.track.album.artists[0].name}
-            track={track.track}
+            track={track}
           />
         ))}
       </div>
