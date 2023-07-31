@@ -3,12 +3,13 @@ import logo from "../assets/Images/background spotify.jpeg";
 import { redirectAfterAuthtentication, redirectUri } from "../../global";
 
 export default function Login() {
-  const clientId = import.meta.env.API_CLIENT;
+  const clientId = import.meta.env.VITE_API_CLIENT;
   const redirectUriApp = redirectUri;
   const redirectAfterAuthtenticationApp = redirectAfterAuthtentication;
   const urlParams = new URLSearchParams(window.location.search);
   const code = urlParams.get("code");
   const [isRedirect, setIsRedirect] = useState(true);
+  console.log("client id", clientId);
 
   function generateRandomString(length: number) {
     let text = "";
