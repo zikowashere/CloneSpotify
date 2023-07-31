@@ -5,7 +5,7 @@ let redirectUri: string;
 let redirectAfterAuthtentication: string;
 // Vérifie si vous êtes dans un environnement de navigateur (client-side)
 if (typeof window !== "undefined") {
-  redirectUri = window.location.origin + "/callback/";
+  redirectUri = window.location.origin;
   redirectAfterAuthtentication = window.location.origin;
 } else {
   // Si vous êtes dans un environnement de serveur (server-side), définissez une valeur par défaut pour redirectUri
