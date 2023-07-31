@@ -9,7 +9,7 @@ if (typeof window !== "undefined") {
   redirectAfterAuthtentication = window.location.origin;
 } else {
   // Si vous êtes dans un environnement de serveur (server-side), définissez une valeur par défaut pour redirectUri
-  redirectUri = "https://spootiffy.netlify.app/callback/";
+  redirectUri = "https://spootiffy.netlify.app/";
   redirectAfterAuthtentication = "https://spootiffy.netlify.app/";
 }
 export { redirectUri, redirectAfterAuthtentication };
