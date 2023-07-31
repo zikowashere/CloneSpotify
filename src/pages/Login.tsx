@@ -9,7 +9,7 @@ export default function Login() {
   const urlParams = new URLSearchParams(window.location.search);
   const code = urlParams.get("code");
   const [isRedirect, setIsRedirect] = useState(true);
-  console.log("client id", clientId);
+  console.log("redirect", redirectUriApp);
 
   function generateRandomString(length: number) {
     let text = "";

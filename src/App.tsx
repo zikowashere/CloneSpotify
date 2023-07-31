@@ -10,7 +10,6 @@ import { ActionInitializer } from "./actions/ActionInitializer";
 
 function App() {
   const { musicPlay, setElapsedMs } = useContext(contextMusic);
-  const contextAll = useContext(contextApp);
 
   useMemo(() => {
     setElapsedMs(0);
