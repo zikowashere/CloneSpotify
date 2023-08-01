@@ -4,7 +4,7 @@ import {
   styleFirstDiv,
   styleImagePlaylistCard,
   styleTitlePlaylistCard,
-} from "../assets/style/PlayListCard";
+} from "../assets/style/PlaylistCard";
 
 type Props = {
   imagePlaylsit: string;
