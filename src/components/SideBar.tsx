@@ -1,4 +1,5 @@
 import React, { ReactNode } from "react";
+import { styleSideBar } from "../assets/style/SideBar";
 
 type Props = {
   children: ReactNode;
@@ -6,14 +7,7 @@ type Props = {
 
 const SideBar = ({ children }: Props) => {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        top: "10%",
-        width: "100%",
-      }}
-    >
+    <div style={styleSideBar}>
       <div>{children}</div>
     </div>
   );
