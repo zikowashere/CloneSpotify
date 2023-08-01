@@ -9,6 +9,17 @@ import ProgressBar from "./ProgressBar";
 import { formatTime } from "../../global";
 import { track } from "../types/track";
 import { SearchContext } from "../hooks/SearchContext";
+import {
+  styleArtistTrack,
+  styleDurationTime,
+  styleDurationTrack,
+  styleFirstDivPlayerTrack,
+  styleImageButton,
+  styleImageTarck,
+  styleRoot,
+  styleRootButtonsPlayerTrack,
+  styleTrackButton,
+} from "../assets/style/PlayerTrack";
 
 type Props = {
   track: track | undefined;
@@ -62,23 +73,9 @@ const PlayerTrack = ({ track, durationTrack }: Props) => {
   }, [stopStratTrack, elapsedMs]);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          width: "50%",
-          backgroundColor: "black",
-        }}
-      >
-        <img
-          style={{ height: "100%", width: "10%", marginRight: "5px" }}
-          src={imagePlayerTrack}
-        />
+    <div style={styleRoot}>
+      <div style={styleFirstDivPlayerTrack}>
+        <img style={styleImageTarck} src={imagePlayerTrack} />
         <div
           style={{
             display: "flex",
@@ -86,75 +83,33 @@ const PlayerTrack = ({ track, durationTrack }: Props) => {
           }}
         >
           <p style={{ color: "white" }}>{track?.name}</p>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              position: "absolute",
-              top: "50%",
-            }}
-          >
+          <div style={styleArtistTrack}>
             {track?.artists?.map((artist) => (
               <p style={{ color: "grey", fontSize: "12px" }}>{artist.name}</p>
             ))}
           </div>
         </div>
       </div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          height: "100%",
-        }}
-      >
+      <div style={styleRootButtonsPlayerTrack}>
         <div
           style={{
             height: "70%",
             backgroundColor: "black",
           }}
         >
-          <button
-            style={{
-              backgroundColor: "white",
-              height: "100%",
-              alignItems: "center",
-              marginRight: "10px",
-            }}
-            onClick={() => backTrack()}
-          >
-            <img style={{ height: "20px", width: "20px" }} src={backMusicImg} />
+          <button style={styleTrackButton} onClick={() => backTrack()}>
+            <img style={styleImageButton} src={backMusicImg} />
           </button>
 
-          <button
-            style={{
-              backgroundColor: "white",
-              height: "100%",
-              alignItems: "center",
-              marginRight: "10px",
-            }}
-            onClick={() => playMusicOrStop()}
-          >
+          <button style={styleTrackButton} onClick={() => playMusicOrStop()}>
             {stopStratTrack ? (
-              <img
-                style={{ height: "20px", width: "20px" }}
-                src={pauseMusicImg}
-              />
+              <img style={styleImageButton} src={pauseMusicImg} />
             ) : (
-              <img
-                style={{ height: "20px", width: "20px" }}
-                src={playMusicImg}
-              />
+              <img style={styleImageButton} src={playMusicImg} />
             )}
           </button>
-          <button
-            style={{
-              backgroundColor: "white",
-              height: "100%",
-              alignItems: "center",
-            }}
-            onClick={() => nextTrack()}
-          >
-            <img style={{ height: "20px", width: "20px" }} src={nextMusicImg} />
+          <button style={styleTrackButton} onClick={() => nextTrack()}>
+            <img style={styleImageButton} src={nextMusicImg} />
           </button>
         </div>
         <div
@@ -165,33 +120,11 @@ const PlayerTrack = ({ track, durationTrack }: Props) => {
             height: "4%",
           }}
         >
-          <p
-            style={{
-              color: "grey",
-              position: "absolute",
-              bottom: "10%",
-              height: "4%",
-              left: "35%",
-              fontSize: "12",
-            }}
-          >
-            {durationTime}
-          </p>
+          <p style={styleDurationTime}>{durationTime}</p>
 
           <ProgressBar trackDuration={durationTrack} currentTime={elapsedMs} />
 
-          <p
-            style={{
-              color: "grey",
-              position: "absolute",
-              right: "25%",
-              fontSize: "12",
-              bottom: "10%",
-              height: "4%",
-            }}
-          >
-            {durationOfTrack}
-          </p>
+          <p style={styleDurationTrack}>{durationOfTrack}</p>
         </div>
       </div>
     </div>

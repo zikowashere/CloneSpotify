@@ -3,6 +3,16 @@ import { ActionMusic } from "../actions/ActionMusic";
 import React, { useContext } from "react";
 import { track } from "../types/track";
 import { contextMusic } from "../hooks/MusicPlayContext";
+import {
+  styleArtistName,
+  styleButton,
+  styleFirstDivPlayListTrackCard,
+  styleImagePlayListTrackCard,
+  styleRootPlayListTrackCard,
+  styleSecondDiv,
+  styleSpotifyPlayer,
+  styleTitle,
+} from "../assets/style/PlayListTrackCard";
 
 type Props = {
   imageArtist: string;
@@ -15,72 +25,23 @@ const PlaylisTrackCard = ({ title, artistName, track }: Props) => {
   const { elapsedMs } = useContext(contextMusic);
   const { playTrack } = ActionMusic();
   return (
-    <div
-      style={{
-        height: "2%",
-        marginBottom: "50px",
-        flexDirection: "row",
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          flex: 1,
-        }}
-      >
+    <div style={styleRootPlayListTrackCard}>
+      <div style={styleFirstDivPlayListTrackCard}>
         <img
-          style={{ height: "50%", width: "15%", marginRight: "5%" }}
+          style={styleImagePlayListTrackCard}
           src={track.album.images[0].url}
         />
 
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            position: "relative",
-            flex: 1,
-          }}
-        >
-          <p
-            style={{
-              position: "absolute",
-              color: "white",
-              fontSize: "12px",
-              fontWeight: "bold",
-              bottom: "10px",
-            }}
-          >
-            {title}
-          </p>
-          <p
-            style={{
-              position: "absolute",
-              fontSize: "13px",
-              color: "white",
-              bottom: "-10px",
-            }}
-          >
-            {artistName}
-          </p>
+        <div style={styleSecondDiv}>
+          <p style={styleTitle}>{title}</p>
+          <p style={styleArtistName}>{artistName}</p>
         </div>
         <div>
           <button
-            style={{
-              backgroundColor: "black",
-              cursor: "pointer",
-              border: "none",
-            }}
+            style={styleButton}
             onClick={() => playTrack(track, elapsedMs)}
           >
-            <img
-              style={{
-                height: "20px",
-                marginRight: "2%",
-                marginTop: "7%",
-              }}
-              src={spotifyPlayer}
-            />
+            <img style={styleSpotifyPlayer} src={spotifyPlayer} />
           </button>
         </div>
       </div>

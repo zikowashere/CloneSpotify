@@ -1,5 +1,10 @@
 import React, { useState } from "react";
 import Avatar from "./AvatarName";
+import {
+  styleDisconnect,
+  styleDivToogleMenu,
+  styleUlToogleMenu,
+} from "../assets/style/Disconnect";
 type Props = {
   userName: string;
 };
@@ -23,21 +28,7 @@ const Disconnect = ({ userName }: Props) => {
     <div style={{ marginTop: "2%", marginRight: "3%" }}>
       {/* Bouton stylé pour le menu déroulant */}
       <div>
-        <button
-          onClick={toggleMenu}
-          style={{
-            height: "10%",
-            display: "flex",
-            flexDirection: "row",
-            width: "200px",
-            backgroundColor: "gray",
-            color: "#fff",
-            padding: "10px 20px",
-            border: "none",
-            borderRadius: "40px",
-            cursor: "pointer",
-          }}
-        >
+        <button onClick={toggleMenu} style={styleDisconnect}>
           <Avatar name={userName} />
           <p>{userName}</p>
         </button>
@@ -45,21 +36,8 @@ const Disconnect = ({ userName }: Props) => {
 
       {/* Afficher le contenu du menu déroulant si isMenuOpen est vrai */}
       {isMenuOpen && (
-        <div
-          style={{
-            backgroundColor: "#f1f1f1",
-            borderRadius: "4px",
-            marginTop: "5px",
-          }}
-        >
-          <ul
-            style={{
-              listStyle: "none",
-              padding: "0",
-              margin: "0",
-              width: "100%",
-            }}
-          >
+        <div style={styleDivToogleMenu}>
+          <ul style={styleUlToogleMenu}>
             <li
               onClick={DisconnectFromApp}
               style={{ padding: "10px", cursor: "pointer" }}

@@ -3,6 +3,12 @@ import { TrackContext } from "../hooks/SearchTracksByArtistContext";
 import { contextApp } from "../hooks/ContextApp";
 import { SearchContext } from "../hooks/SearchContext";
 import { useSearch } from "../hooks/useSearch";
+import {
+  styleBackButton,
+  styleButton,
+  styleFirstDiv,
+  styleRootChoiceBar,
+} from "../assets/style/ChoiceSearchBar";
 
 const ChoiceSearchBar = () => {
   const track = useContext(TrackContext);
@@ -32,52 +38,17 @@ const ChoiceSearchBar = () => {
     });
   }, [showScreenContext.showScreen]);
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        marginBottom: "2%",
-        marginTop: "5%",
-      }}
-    >
-      <div
-        style={{
-          marginLeft: "2%",
-          marginRight: "20%",
-          borderRadius: "25%",
-        }}
-      >
-        <button
-          style={{
-            marginRight: "30%",
-            borderRadius: "25%",
-            background: "#292929",
-            color: "white",
-          }}
-          onClick={() => InitializeDashboard()}
-        >
+    <div style={styleRootChoiceBar}>
+      <div style={styleFirstDiv}>
+        <button style={styleBackButton} onClick={() => InitializeDashboard()}>
           &#x2190;
         </button>
       </div>
       {keyword !== "" && (
         <>
+          <button style={styleButton}>Tout</button>
           <button
-            style={{
-              marginRight: "2%",
-              borderRadius: "25%",
-              background: "#292929",
-              color: "white",
-            }}
-          >
-            Tout
-          </button>
-          <button
-            style={{
-              marginRight: "2%",
-              borderRadius: "25%",
-              background: "#292929",
-              color: "white",
-            }}
+            style={styleButton}
             onClick={() => {
               showScreenContext.setShowScreen("artists");
               showScreenContext.setIsClicked(true);
@@ -86,12 +57,7 @@ const ChoiceSearchBar = () => {
             Artistes
           </button>
           <button
-            style={{
-              marginRight: "2%",
-              borderRadius: "25%",
-              background: "#292929",
-              color: "white",
-            }}
+            style={styleButton}
             onClick={() => {
               showScreenContext.setShowScreen("titres");
               showScreenContext.setIsClicked(true);
@@ -100,12 +66,7 @@ const ChoiceSearchBar = () => {
             Titres
           </button>
           <button
-            style={{
-              marginRight: "2%",
-              borderRadius: "25%",
-              background: "#292929",
-              color: "white",
-            }}
+            style={styleButton}
             onClick={() => {
               showScreenContext.setShowScreen("albums");
               AlbumOfArtist();
@@ -115,12 +76,7 @@ const ChoiceSearchBar = () => {
             Albums
           </button>
           <button
-            style={{
-              marginRight: "2%",
-              borderRadius: "25%",
-              background: "#292929",
-              color: "white",
-            }}
+            style={styleButton}
             onClick={() => {
               showScreenContext.setShowScreen("playlists");
               showScreenContext.setIsClicked(true);
@@ -128,26 +84,8 @@ const ChoiceSearchBar = () => {
           >
             Playlists
           </button>
-          <button
-            style={{
-              marginRight: "2%",
-              borderRadius: "25%",
-              background: "#292929",
-              color: "white",
-            }}
-          >
-            Profils
-          </button>
-          <button
-            style={{
-              marginRight: "2%",
-              borderRadius: "25%",
-              background: "#292929",
-              color: "white",
-            }}
-          >
-            Podcast et emissions
-          </button>
+          <button style={styleButton}>Profils</button>
+          <button style={styleButton}>Podcast et emissions</button>
         </>
       )}
     </div>

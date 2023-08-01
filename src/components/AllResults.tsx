@@ -8,6 +8,13 @@ import AlbumArtist from "./AlbumArtist";
 import { album } from "../types/album";
 import { track } from "../types/track";
 import { playlist } from "../types/playlist";
+import {
+  styleFirstDiv,
+  styleGridOne,
+  styleGridThree,
+  styleGridTwo,
+  styleRootFirstDiv,
+} from "../assets/style/AllResults";
 
 const AllResults = () => {
   const { search, albums } = useContext(SearchContext);
@@ -17,23 +24,8 @@ const AllResults = () => {
   }, [showScreenContext.showScreen]);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyItems: "center",
-        height: "calc(100vh - 10%)",
-        overflowY: "auto",
-        width: "100%",
-        marginLeft: "15%",
-      }}
-    >
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr 1fr ",
-          gridGap: "5%",
-        }}
-      >
+    <div style={styleRootFirstDiv}>
+      <div style={styleGridOne}>
         {showScreenContext.showScreen === "artists" &&
           search.artists?.items.map((artist) => (
             <ArtistCard
@@ -43,13 +35,7 @@ const AllResults = () => {
             />
           ))}
       </div>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr 1fr ",
-          gridGap: "5%",
-        }}
-      >
+      <div style={styleGridTwo}>
         {showScreenContext.showScreen === "playlists" &&
           search.playlists?.items.map((playlist: playlist) => (
             <PlaylistCard
@@ -60,13 +46,7 @@ const AllResults = () => {
           ))}
       </div>
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr 1fr ",
-          gridGap: "5%",
-        }}
-      >
+      <div style={styleGridThree}>
         {showScreenContext.showScreen === "albums" &&
           albums?.map((album: album) => (
             <AlbumArtist
@@ -77,7 +57,7 @@ const AllResults = () => {
           ))}
       </div>
 
-      <div style={{ display: "flex", flexDirection: "column" }}>
+      <div style={styleFirstDiv}>
         {showScreenContext.showScreen === "titres" &&
           search.tracks?.items.map((trackOfArtsit: track) => (
             <TrackCard

@@ -1,9 +1,8 @@
-import React, { ChangeEvent, useContext, useEffect, useMemo } from "react";
+import React, { ChangeEvent, useContext, useEffect } from "react";
 import { styleHeader, styleSearch } from "../assets/style/Header";
 import { SearchContext } from "../hooks/SearchContext";
 import { useSearch } from "../hooks/useSearch";
 import spotifyLogo from "../assets/Images/spotifyLogo.jpeg";
-import { ActionInitializer } from "../actions/ActionInitializer";
 import { contextApp } from "../hooks/ContextApp";
 import Disconnect from "./Disconnect";
 
