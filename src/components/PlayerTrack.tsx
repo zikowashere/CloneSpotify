@@ -7,7 +7,7 @@ import { ActionMusic } from "../actions/ActionMusic";
 import { contextMusic } from "../hooks/MusicPlayContext";
 import ProgressBar from "./ProgressBar";
 import { formatTime } from "../../global";
-import { track } from "../types/track";
+import { track, trackCard } from "../types/track";
 import { SearchContext } from "../hooks/SearchContext";
 import {
   styleArtistTrack,
@@ -22,7 +22,7 @@ import {
 } from "../assets/style/PlayerTrack";
 
 type Props = {
-  track: track | undefined;
+  track: trackCard | undefined;
   durationTrack: number;
 };
 const PlayerTrack = ({ track, durationTrack }: Props) => {
