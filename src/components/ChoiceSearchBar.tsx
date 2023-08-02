@@ -46,7 +46,6 @@ const ChoiceSearchBar = () => {
       </div>
       {keyword !== "" && (
         <>
-          <button style={styleButton}>Tout</button>
           <button
             style={styleButton}
             onClick={() => {
@@ -84,8 +83,6 @@ const ChoiceSearchBar = () => {
           >
             Playlists
           </button>
-          <button style={styleButton}>Profils</button>
-          <button style={styleButton}>Podcast et emissions</button>
         </>
       )}
     </div>

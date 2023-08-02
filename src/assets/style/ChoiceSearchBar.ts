@@ -12,13 +12,13 @@ export const styleFirstDiv: CSSProperties = {
   borderRadius: "25%",
 };
 export const styleBackButton: CSSProperties = {
-  marginRight: "30%",
+  marginRight: "20%",
   borderRadius: "25%",
   background: "#292929",
   color: "white",
 };
 export const styleButton: CSSProperties = {
-  marginRight: "2%",
+  marginRight: "5%",
   borderRadius: "25%",
   background: "#292929",
   color: "white",

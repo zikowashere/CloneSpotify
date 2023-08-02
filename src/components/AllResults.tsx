@@ -19,9 +19,6 @@ import {
 const AllResults = () => {
   const { search, albums } = useContext(SearchContext);
   const showScreenContext = useContext(contextApp);
-  useEffect(() => {
-    console.log("show screen", showScreenContext.showScreen);
-  }, [showScreenContext.showScreen]);
 
   return (
     <div style={styleRootFirstDiv}>

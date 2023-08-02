@@ -3,7 +3,7 @@ import { CSSProperties } from "react";
 export const styleFirstDiv: CSSProperties = {
   display: "flex",
   flexDirection: "row",
-  width: "90%",
+  width: "80%",
   justifyContent: "center",
 };
 export const styleImagePlaylistCard: CSSProperties = {
