@@ -31,7 +31,7 @@ const Tracks = () => {
         }}
       >
         {trackArray.map((track: track) => (
-          <TrackCard title={track.name} uri={track?.uri} track={track} />
+          <TrackCard title={track.name} uri={track?.uri} track={track} imageArtist={track.album.images[0].url} />
         ))}
       </div>
     </div>

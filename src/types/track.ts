@@ -7,15 +7,15 @@ export type track = {
   uri: string;
   duration_ms: number;
   artists: artist[];
-  track: {
-    name: string;
+  track: trackCard
+};
+export type trackCard = {
+  name: string;
     album: album;
     uri: string;
     duration_ms: number;
     artists: artist[];
-    track: track;
-  };
-};
+}
 
 export type tracks = {
   tracks: track[];
