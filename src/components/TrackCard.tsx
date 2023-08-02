@@ -1,6 +1,6 @@
 import spotifyPlayer from "../assets/Images/SpotifyPlayButton.png";
 import { ActionMusic } from "../actions/ActionMusic";
-import { track } from "../types/track";
+import { track, trackCard } from "../types/track";
 import React from "react";
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
   artistName?: string;
   title: string;
   uri: string;
-  track: track;
+  track: trackCard;
 };
 
 const TrackCard = ({ title, artistName, track, uri, imageArtist }: Props) => {

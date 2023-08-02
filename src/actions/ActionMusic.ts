@@ -1,7 +1,7 @@
 import { useContext, useEffect, useMemo, useState } from "react";
 import { accessToken } from "../../global";
 import { contextMusic } from "../hooks/MusicPlayContext";
-import { track } from "../types/track";
+import { track, trackCard } from "../types/track";
 
 export const ActionMusic = () => {
   const [durationTrack, setDurationTrack] = useState(0);
@@ -21,7 +21,7 @@ export const ActionMusic = () => {
     /** */
   }, [elapsedMs]);
 
-  const playTrack = async (track: track | undefined, elapsedMs: number) => {
+  const playTrack = async (track: trackCard | undefined, elapsedMs: number) => {
     setIsPlaying(true);
     setStopStratTrack(true);
     setMusicPlay(track);
