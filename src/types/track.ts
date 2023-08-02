@@ -13,8 +13,10 @@ export type track = {
     uri: string;
     duration_ms: number;
     artists: artist[];
+    track: track;
   };
 };
+
 export type tracks = {
   tracks: track[];
   items: never[];

@@ -22,11 +22,7 @@ export const contextMusic = React.createContext<ContextTypeMusic>({
     duration_ms: 0,
     artists: [],
     track: {
-      name: "",
       album: { id: "", name: "", images: [], artists: [] },
-      uri: "",
-      duration_ms: 0,
-      artists: [],
     },
   },
   isPlaying: false,

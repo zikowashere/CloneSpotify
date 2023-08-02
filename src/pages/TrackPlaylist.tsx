@@ -5,7 +5,10 @@ import { track, tracks } from "../types/track";
 
 const TrackPlaylist = () => {
   const track = useContext(TrackContext);
-  const trackArray: track[] = track.track;
+  const trackArray = track;
+  useEffect(() => {
+    console.log("track array", track);
+  });
 
   return (
     <div
@@ -21,13 +24,13 @@ const TrackPlaylist = () => {
           flexDirection: "column",
         }}
       >
-        {trackArray.map((track) => (
+        {trackArray.track.map((track) => (
           <TrackCard
             title={track.track.album.name}
             imageArtist={track.track.album.images[0]?.url}
             uri={track.track.uri}
             artistName={track.track.album.artists[0].name}
-            track={track}
+            track={track.track}
           />
         ))}
       </div>
