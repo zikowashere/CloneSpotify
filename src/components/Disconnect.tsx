@@ -28,7 +28,7 @@ const Disconnect = ({ userName }: Props) => {
     <div style={{ marginTop: "2%", marginRight: "3%" }}>
       {/* Bouton stylé pour le menu déroulant */}
       <div>
-        <button onClick={toggleMenu} style={styleDisconnect}>
+        <button id="disconnect" onClick={toggleMenu} style={styleDisconnect}>
           <Avatar name={userName} />
           <p>{userName}</p>
         </button>
@@ -39,6 +39,7 @@ const Disconnect = ({ userName }: Props) => {
         <div style={styleDivToogleMenu}>
           <ul style={styleUlToogleMenu}>
             <li
+              id="log out"
               onClick={DisconnectFromApp}
               style={{ padding: "10px", cursor: "pointer" }}
             >
