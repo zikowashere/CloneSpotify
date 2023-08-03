@@ -1,12 +1,12 @@
-Clone Spotify 🔥🔥🔥
-
+**Clone Spotify 🔥🔥🔥
+**
 This project is a clone of the Spotify application, which aims to replicate some of Spotify's features. Before getting started, make sure to follow these steps:
 
-Prerequisites 🔥🔥🔥
-
+**Prerequisites 🔥🔥🔥
+**
 Install Spotify on your desktop. You can download the application from the official Spotify website.
 
-Create a Spotify account if you don't have one already. You can sign up on the official Spotify website.
+Create a premium Spotify account if you don't have one already. You can sign up on the official Spotify website.
 
 Project Configuration ✨✨
 
@@ -37,11 +37,9 @@ Configure your project:
 
 Create a .env file in the project root directory.
 
-Inside the .env file, add the following line and replace <YOUR_CLIENT_ID> with your actual Spotify Client ID:
+Inside the .env file, add the following line and replace <VITE_API_CLIENT> with your actual Spotify Client ID:
 
 Copy code✨✨
-
-APP_CLIENT=<YOUR_CLIENT_ID>
 
 Start the project:✨✨
 
