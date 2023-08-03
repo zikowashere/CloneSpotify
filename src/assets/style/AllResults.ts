@@ -6,7 +6,7 @@ export const styleRootFirstDiv: CSSProperties = {
   height: "calc(100vh - 5%)",
   overflowY: "auto",
   width: "100%",
-  marginLeft: "5%",
+  marginLeft: "10%",
 };
 export const styleGridOne: CSSProperties = {
   display: "grid",
