@@ -11,6 +11,7 @@
     "cypress:open": "cypress open"
   },
   "dependencies": {
+    "axios": "^0.24.0",
     "js-cookie": "^3.0.5",
     "jwt-decode": "^3.1.2",
     "localforage": "^1.10.0",
