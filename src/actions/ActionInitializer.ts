@@ -1,8 +1,6 @@
 import { useContext } from "react";
-import { accessToken } from "../../global";
 import { contextApp } from "../hooks/ContextApp";
-import axios from "axios";
-import { getUserInfoService } from "../services/Initializer";
+import { getUserInfoService } from "../services/InitializerService";
 
 export const ActionInitializer = () => {
   const contextAll = useContext(contextApp);

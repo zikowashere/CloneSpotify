@@ -3,6 +3,7 @@ import { accessToken } from "../../global";
 import { contextMusic } from "../hooks/MusicPlayContext";
 import { track, trackCard } from "../types/track";
 import axios from "axios";
+import { ActionMusicService } from "../services/ActionMusicService";
 
 export const ActionMusic = () => {
   const [durationTrack, setDurationTrack] = useState(0);
@@ -26,43 +27,21 @@ export const ActionMusic = () => {
     setIsPlaying(true);
     setStopStratTrack(true);
     setMusicPlay(track);
-
-    await axios.put(
-      "https://api.spotify.com/v1/me/player/play",
-      {
-        uris: [track?.uri],
-        position_ms: elapsedMs,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
+    ActionMusicService().play(track, elapsedMs);
   };
 
   const pauseTrack = async () => {
     setStopStratTrack(false);
-    await axios.put(`https://api.spotify.com/v1/me/player/pause`, null, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
+    ActionMusicService().pauseTrack();
   };
 
   const backTrack = async () => {
-    await axios.post(`https://api.spotify.com/v1/me/player/previous`, {
-      headers: { Authorization: `Bearer ${accessToken}` },
-    });
+    ActionMusicService().backTrack();
   };
 
   const nextTrack = async () => {
-    await axios
-      .post(`https://api.spotify.com/v1/me/player/next`, {
-        headers: { Authorization: `Bearer ${accessToken}` },
-      })
+    ActionMusicService()
+      .nextTrack()
       .then((response) => {
         console.log("Piste suivante jouée avec succès !");
         console.log("next track", response.data);
@@ -76,12 +55,8 @@ export const ActionMusic = () => {
   };
 
   const getCurrentPlaybackTime = async () => {
-    axios
-      .get(`https://api.spotify.com/v1/me/player/currently-playing`, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      })
+    ActionMusicService()
+      .currentPlayingTrack()
       .then((response) => {
         setElapsedMs(response.data.progress_ms);
       })
@@ -91,12 +66,8 @@ export const ActionMusic = () => {
   };
 
   const getCurrentState = async () => {
-    axios
-      .get(`https://api.spotify.com/v1/me/player`, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      })
+    ActionMusicService()
+      .currentState()
       .then((res) => {
         setElapsedMs(res.data.progress_ms);
         setDurationTrack(res.data.item.duration_ms);
