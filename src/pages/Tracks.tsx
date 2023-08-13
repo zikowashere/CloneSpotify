@@ -9,8 +9,6 @@ const Tracks = () => {
   const track = useContext(TrackContext);
   const trackArray = track.track;
   const { musicPlay, setElapsedMs } = useContext(contextMusic);
-  console.log("tracks here ", trackArray);
-  trackArray.map((track: track) => console.log("images", track.album));
 
   useEffect(() => {
     setElapsedMs(0);
