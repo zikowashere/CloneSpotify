@@ -21,7 +21,7 @@ const AlbumArtist = ({ imageAlbum, title, idAlbum }: Props) => {
     getAlbumById(idAlbum);
   };
   return (
-    <button style={styleButtonAlbum} onClick={() => HandleAlbum()}>
+    <button style={styleButtonAlbum} onClick={HandleAlbum}>
       <div style={styleDivOne}>
         <img style={styleImageAlbumArtist} src={imageAlbum} />
         <p style={styleTitleAlbumArtist}>{title}</p>
