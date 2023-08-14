@@ -9,9 +9,9 @@ const Disconnect = ({ userName }: Props) => {
   // Utilisez l'état local pour gérer l'état du menu déroulant (ouvert/fermé)
   const [isMenuOpen, setMenuOpen] = useState(false);
 
-  const DisconnectFromApp = () => {
-    localStorage.removeItem("access_token");
-    localStorage.removeItem("code_verifier");
+  const DisconnectFromApp = async () => {
+    await localStorage.removeItem("access_token");
+    await localStorage.removeItem("code_verifier");
     window.location.href = "http://localhost:5173/";
   };
 
