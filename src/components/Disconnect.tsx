@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import Avatar from "./AvatarName";
-import {
-  styleDisconnect,
-  styleDivToogleMenu,
-  styleUlToogleMenu,
-} from "../assets/style/Disconnect";
+import "../assets/style/Disconnect.css";
 type Props = {
   userName: string;
 };
@@ -28,7 +24,11 @@ const Disconnect = ({ userName }: Props) => {
     <div style={{ marginTop: "2%", marginRight: "3%" }}>
       {/* Bouton stylé pour le menu déroulant */}
       <div>
-        <button id="disconnect" onClick={toggleMenu} style={styleDisconnect}>
+        <button
+          id="disconnect"
+          onClick={toggleMenu}
+          className="styleDisconnect"
+        >
           <Avatar name={userName} />
           <p>{userName}</p>
         </button>
@@ -36,8 +36,8 @@ const Disconnect = ({ userName }: Props) => {
 
       {/* Afficher le contenu du menu déroulant si isMenuOpen est vrai */}
       {isMenuOpen && (
-        <div style={styleDivToogleMenu}>
-          <ul style={styleUlToogleMenu}>
+        <div className="styleDivToogleMenu">
+          <ul className="styleUlToogleMenu">
             <li
               id="log out"
               onClick={DisconnectFromApp}

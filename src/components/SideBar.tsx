@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { styleSideBar } from "../assets/style/SideBar";
+import "../assets/style/SideBar.css";
 
 type Props = {
   children: ReactNode;
@@ -7,7 +7,7 @@ type Props = {
 
 const SideBar = ({ children }: Props) => {
   return (
-    <div style={styleSideBar}>
+    <div className="styleSideBar">
       <div>{children}</div>
     </div>
   );

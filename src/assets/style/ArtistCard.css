@@ -1,0 +1,12 @@
+.styleButtonArtist {
+  cursor: pointer;
+  width: 100%;
+  background-color: black;
+}
+.styleTitleArtist {
+  display: flex;
+  flex: 1;
+  top: 30%;
+  color: white;
+  justify-content: center;
+}

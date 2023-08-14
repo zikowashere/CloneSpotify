@@ -1,0 +1,23 @@
+.styleRootChoiceBar {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 2%;
+  margin-top: 5%;
+}
+.styleFirstDivChoiceBar {
+  margin-left: 2%;
+  margin-right: 20%;
+  border-radius: 25%;
+}
+.styleBackButton {
+  margin-right: 5%;
+  border-radius: 25%;
+  background: #292929;
+  color: white;
+}
+.styleButton {
+  margin-right: 5%;
+  border-radius: 25%;
+  background-color: #292929;
+  color: white;
+}

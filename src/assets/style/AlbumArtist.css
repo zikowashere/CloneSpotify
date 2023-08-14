@@ -1,0 +1,20 @@
+.styleButtonAlbum {
+  cursor: pointerl;
+  width: 100%;
+  background-color: black;
+}
+.styleDivOne {
+  display: flex;
+  flex-direction: column;
+}
+.styleImageAlbumArtist {
+  height: 150px;
+  margin-right: 2%;
+}
+.styleTitleAlbumArtist {
+  display: flex;
+  flex: 1;
+  top: 30%;
+  color: white;
+  justify-content: center;
+}

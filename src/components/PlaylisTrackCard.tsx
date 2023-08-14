@@ -3,16 +3,7 @@ import { ActionMusic } from "../actions/ActionMusic";
 import React, { useContext, useEffect } from "react";
 import { track } from "../types/track";
 import { contextMusic } from "../hooks/MusicPlayContext";
-import {
-  styleArtistName,
-  styleButton,
-  styleFirstDivPlayListTrackCard,
-  styleImagePlayListTrackCard,
-  styleRootPlayListTrackCard,
-  styleSecondDiv,
-  styleSpotifyPlayer,
-  styleTitle,
-} from "../assets/style/PlayListTrackCard";
+import "../assets/style/PlayListTrackCard.css";
 
 type Props = {
   imageArtist: string;
@@ -28,23 +19,23 @@ const PlaylisTrackCard = ({ title, artistName, track }: Props) => {
     console.log("image", track.album.images[0].url);
   });
   return (
-    <div style={styleRootPlayListTrackCard}>
-      <div style={styleFirstDivPlayListTrackCard}>
+    <div className="styleRootPlayListTrackCard">
+      <div className="styleFirstDivPlayListTrackCard">
         <img
-          style={styleImagePlayListTrackCard}
+          className="styleImagePlayListTrackCard"
           src={track.album.images[0].url}
         />
 
-        <div style={styleSecondDiv}>
-          <p style={styleTitle}>{title}</p>
-          <p style={styleArtistName}>{artistName}</p>
+        <div className="styleSecondDiv">
+          <p className="styleTitle">{title}</p>
+          <p className="styleArtistName">{artistName}</p>
         </div>
         <div>
           <button
-            style={styleButton}
+            className="styleButton"
             onClick={() => playTrack(track, elapsedMs)}
           >
-            <img style={styleSpotifyPlayer} src={spotifyPlayer} />
+            <img className="styleSpotifyPlayer" src={spotifyPlayer} />
           </button>
         </div>
       </div>

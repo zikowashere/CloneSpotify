@@ -1,0 +1,27 @@
+.styleRootFirstDiv {
+  display: flex;
+  justify-items: center;
+  height: calc(100vh - 5%);
+  overflow-y: auto;
+  width: 100%;
+  margin-left: 10%;
+}
+.styleGridOne {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 5%;
+}
+.styleGridTwo {
+  display: grid;
+  grid-template-columns: 0.5fr 0.5fr 0.5fr;
+  grid-gap: 1%;
+}
+.styleGridThree {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 15%;
+}
+.styleFirstDiv {
+  display: flex;
+  flex-direction: column;
+}

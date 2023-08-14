@@ -37,7 +37,7 @@ const BestArtistTrackResult = ({ artist }: Props) => {
       </div>
       <div
         style={{
-          height: "700px",
+          height: "800px",
           overflowY: "scroll",
           width: "100%",
         }}

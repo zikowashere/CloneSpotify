@@ -1,0 +1,20 @@
+.styleRoot {
+  background-color: black;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+}
+.styleImageCover {
+  height: 200px;
+  margin-right: 2%;
+  align-items: center;
+  bottom: 10px;
+}
+.styleTitle {
+  color: white;
+  font-size: 50px;
+  font-weight: bold;
+  justify-content: center;
+  display: flex;
+  flex: 1;
+}

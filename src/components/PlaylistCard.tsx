@@ -1,10 +1,6 @@
 import React from "react";
 import { useSearchTrackById } from "../hooks/useSearchTracksByid";
-import {
-  styleFirstDiv,
-  styleImagePlaylistCard,
-  styleTitlePlaylistCard,
-} from "../assets/style/PlaylistCard";
+import "../assets/style/PlaylistCard.css";
 
 type Props = {
   imagePlaylsit: string;
@@ -25,9 +21,9 @@ const PlaylistCard = ({ imagePlaylsit, title, link }: Props) => {
       style={{ backgroundColor: "black", marginBottom: "3%" }}
       onClick={() => getTracksPlayList(link)}
     >
-      <div style={styleFirstDiv}>
-        <img style={styleImagePlaylistCard} src={imagePlaylsit} />
-        <p style={styleTitlePlaylistCard}>{title}</p>
+      <div className="styleFirstDivPlaylistCard">
+        <img className="styleImagePlaylistCard" src={imagePlaylsit} />
+        <p className="styleTitlePlaylistCard">{title}</p>
       </div>
     </button>
   );

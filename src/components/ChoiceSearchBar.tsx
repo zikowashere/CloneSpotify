@@ -3,12 +3,7 @@ import { TrackContext } from "../hooks/SearchTracksByArtistContext";
 import { contextApp } from "../hooks/ContextApp";
 import { SearchContext } from "../hooks/SearchContext";
 import { useSearch } from "../hooks/useSearch";
-import {
-  styleBackButton,
-  styleButton,
-  styleFirstDiv,
-  styleRootChoiceBar,
-} from "../assets/style/ChoiceSearchBar";
+import "../assets/style/ChoiceSearchBar.css";
 
 const ChoiceSearchBar = () => {
   const track = useContext(TrackContext);
@@ -38,16 +33,19 @@ const ChoiceSearchBar = () => {
     });
   }, [showScreenContext.showScreen]);
   return (
-    <div style={styleRootChoiceBar}>
-      <div style={styleFirstDiv}>
-        <button style={styleBackButton} onClick={() => InitializeDashboard()}>
+    <div className="styleRootChoiceBar">
+      <div className="styleFirstDivChoiceBar">
+        <button
+          className="styleBackButton"
+          onClick={() => InitializeDashboard()}
+        >
           &#x2190;
         </button>
       </div>
       {keyword !== "" && (
         <>
           <button
-            style={styleButton}
+            className="styleButton"
             onClick={() => {
               showScreenContext.setShowScreen("artists");
               showScreenContext.setIsClicked(true);
@@ -56,7 +54,7 @@ const ChoiceSearchBar = () => {
             Artistes
           </button>
           <button
-            style={styleButton}
+            className="styleButton"
             onClick={() => {
               showScreenContext.setShowScreen("titres");
               showScreenContext.setIsClicked(true);
@@ -65,7 +63,7 @@ const ChoiceSearchBar = () => {
             Titres
           </button>
           <button
-            style={styleButton}
+            className="styleButton"
             onClick={() => {
               showScreenContext.setShowScreen("albums");
               AlbumOfArtist();
@@ -75,7 +73,7 @@ const ChoiceSearchBar = () => {
             Albums
           </button>
           <button
-            style={styleButton}
+            className="styleButton"
             onClick={() => {
               showScreenContext.setShowScreen("playlists");
               showScreenContext.setIsClicked(true);

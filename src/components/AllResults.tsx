@@ -8,21 +8,15 @@ import AlbumArtist from "./AlbumArtist";
 import { album } from "../types/album";
 import { track } from "../types/track";
 import { playlist } from "../types/playlist";
-import {
-  styleFirstDiv,
-  styleGridOne,
-  styleGridThree,
-  styleGridTwo,
-  styleRootFirstDiv,
-} from "../assets/style/AllResults";
+import "../assets/style/AllResults.css";
 
 const AllResults = () => {
   const { search, albums } = useContext(SearchContext);
   const showScreenContext = useContext(contextApp);
 
   return (
-    <div style={styleRootFirstDiv}>
-      <div style={styleGridOne}>
+    <div className="styleRootFirstDiv">
+      <div className="styleGridOne">
         {showScreenContext.showScreen === "artists" &&
           search.artists?.items.map((artist) => (
             <ArtistCard
@@ -32,7 +26,7 @@ const AllResults = () => {
             />
           ))}
       </div>
-      <div style={styleGridTwo}>
+      <div className="styleGridTwo">
         {showScreenContext.showScreen === "playlists" &&
           search.playlists?.items.map((playlist: playlist) => (
             <PlaylistCard
@@ -43,7 +37,7 @@ const AllResults = () => {
           ))}
       </div>
 
-      <div style={styleGridThree}>
+      <div className="styleGridThree">
         {showScreenContext.showScreen === "albums" &&
           albums?.map((album: album) => (
             <AlbumArtist
@@ -54,7 +48,7 @@ const AllResults = () => {
           ))}
       </div>
 
-      <div style={styleFirstDiv}>
+      <div className="styleFirstDiv">
         {showScreenContext.showScreen === "titres" &&
           search.tracks?.items.map((trackOfArtsit: track) => (
             <TrackCard

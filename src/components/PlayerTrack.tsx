@@ -9,17 +9,7 @@ import ProgressBar from "./ProgressBar";
 import { formatTime } from "../../global";
 import { track, trackCard } from "../types/track";
 import { SearchContext } from "../hooks/SearchContext";
-import {
-  styleArtistTrack,
-  styleDurationTime,
-  styleDurationTrack,
-  styleFirstDivPlayerTrack,
-  styleImageButton,
-  styleImageTarck,
-  styleRoot,
-  styleRootButtonsPlayerTrack,
-  styleTrackButton,
-} from "../assets/style/PlayerTrack";
+import "../assets/style/PlayerTrack.css";
 
 type Props = {
   track: trackCard | undefined;
@@ -73,9 +63,9 @@ const PlayerTrack = ({ track, durationTrack }: Props) => {
   }, [stopStratTrack, elapsedMs]);
 
   return (
-    <div style={styleRoot}>
-      <div style={styleFirstDivPlayerTrack}>
-        <img style={styleImageTarck} src={imagePlayerTrack} />
+    <div className="styleRoot">
+      <div className="styleFirstDivPlayerTrack">
+        <img className="styleImageTarck" src={imagePlayerTrack} />
         <div
           style={{
             display: "flex",
@@ -83,33 +73,36 @@ const PlayerTrack = ({ track, durationTrack }: Props) => {
           }}
         >
           <p style={{ color: "white" }}>{track?.name}</p>
-          <div style={styleArtistTrack}>
+          <div className="styleArtistTrack">
             {track?.artists?.map((artist) => (
               <p style={{ color: "grey", fontSize: "12px" }}>{artist.name}</p>
             ))}
           </div>
         </div>
       </div>
-      <div style={styleRootButtonsPlayerTrack}>
+      <div className="styleRootButtonsPlayerTrack">
         <div
           style={{
             height: "70%",
             backgroundColor: "black",
           }}
         >
-          <button style={styleTrackButton} onClick={() => backTrack()}>
-            <img style={styleImageButton} src={backMusicImg} />
+          <button className="styleTrackButton" onClick={() => backTrack()}>
+            <img className="styleImageButton" src={backMusicImg} />
           </button>
 
-          <button style={styleTrackButton} onClick={() => playMusicOrStop()}>
+          <button
+            className="styleTrackButton"
+            onClick={() => playMusicOrStop()}
+          >
             {stopStratTrack ? (
-              <img style={styleImageButton} src={pauseMusicImg} />
+              <img className="styleImageButton" src={pauseMusicImg} />
             ) : (
-              <img style={styleImageButton} src={playMusicImg} />
+              <img className="styleImageButton" src={playMusicImg} />
             )}
           </button>
-          <button style={styleTrackButton} onClick={() => nextTrack()}>
-            <img style={styleImageButton} src={nextMusicImg} />
+          <button className="styleTrackButton" onClick={() => nextTrack()}>
+            <img className="styleImageButton" src={nextMusicImg} />
           </button>
         </div>
         <div
@@ -120,11 +113,11 @@ const PlayerTrack = ({ track, durationTrack }: Props) => {
             height: "4%",
           }}
         >
-          <p style={styleDurationTime}>{durationTime}</p>
+          <p className="styleDurationTime">{durationTime}</p>
 
           <ProgressBar trackDuration={durationTrack} currentTime={elapsedMs} />
 
-          <p style={styleDurationTrack}>{durationOfTrack}</p>
+          <p className="styleDurationTrack">{durationOfTrack}</p>
         </div>
       </div>
     </div>

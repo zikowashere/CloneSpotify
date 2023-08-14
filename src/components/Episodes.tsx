@@ -8,7 +8,6 @@ import { contextApp } from "../hooks/ContextApp";
 const Episodes = () => {
   const search = useContext(SearchContext);
   const searchPlaylist = useSearch();
-  const showScreenContext = useContext(contextApp);
 
   useEffect(() => {
     searchPlaylist.getEpisodesUser();

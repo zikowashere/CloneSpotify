@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  styleImageCover,
-  styleRoot,
-  styleTitle,
-} from "../assets/style/CoverPlayList";
+import "../assets/style/CoverPlayList.css";
 
 type Props = {
   imagePlaylist: string;
@@ -13,9 +9,9 @@ type Props = {
 
 const CoverPlayList = ({ imagePlaylist, title }: Props) => {
   return (
-    <div style={styleRoot}>
-      <img style={styleImageCover} src={imagePlaylist} />
-      <p style={styleTitle}>{title}</p>
+    <div className="styleRoot">
+      <img className="styleImageCover" src={imagePlaylist} />
+      <p className="styleTitle">{title}</p>
     </div>
   );
 };

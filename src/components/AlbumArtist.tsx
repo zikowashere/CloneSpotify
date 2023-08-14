@@ -1,12 +1,7 @@
 import React from "react";
 import { useSearchTrackById } from "../hooks/useSearchTracksByid";
 import { useSearch } from "../hooks/useSearch";
-import {
-  styleButtonAlbum,
-  styleDivOne,
-  styleImageAlbumArtist,
-  styleTitleAlbumArtist,
-} from "../assets/style/AlbumArtist";
+import "../assets/style/AlbumArtist.css";
 
 type Props = {
   imageAlbum: string;
@@ -21,10 +16,10 @@ const AlbumArtist = ({ imageAlbum, title, idAlbum }: Props) => {
     getAlbumById(idAlbum);
   };
   return (
-    <button style={styleButtonAlbum} onClick={HandleAlbum}>
-      <div style={styleDivOne}>
-        <img style={styleImageAlbumArtist} src={imageAlbum} />
-        <p style={styleTitleAlbumArtist}>{title}</p>
+    <button className="styleButtonAlbum" onClick={HandleAlbum}>
+      <div className="styleDivOne">
+        <img className="styleImageAlbumArtist" src={imageAlbum} />
+        <p className="styleTitleAlbumArtist">{title}</p>
       </div>
     </button>
   );

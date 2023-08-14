@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { TrackContext } from "../hooks/SearchTracksByArtistContext";
 import TrackCard from "../components/TrackCard";
-import { track, tracks } from "../types/track";
 
 const TrackPlaylist = () => {
   const track = useContext(TrackContext);
@@ -13,7 +12,7 @@ const TrackPlaylist = () => {
   return (
     <div
       style={{
-        width: "70%",
+        width: "100%",
         height: "600px",
         overflowY: "scroll",
       }}

@@ -1,9 +1,6 @@
 import React from "react";
 import { useSearchTrackById } from "../hooks/useSearchTracksByid";
-import {
-  styleButtonArtist,
-  styleTitleArtist,
-} from "../assets/style/ArtistCard";
+import "../assets/style/ArtistCard.css";
 
 type Props = {
   imageArtist: string;
@@ -25,7 +22,7 @@ const ArtistCard = ({ imageArtist, title, idArtist }: Props) => {
   return (
     <button
       id="artist"
-      style={styleButtonArtist}
+      className="styleButtonArtist"
       onClick={() => TracksByArtistId()}
     >
       <div
@@ -35,7 +32,7 @@ const ArtistCard = ({ imageArtist, title, idArtist }: Props) => {
         }}
       >
         <img style={{ height: "150px", marginRight: "2%" }} src={imageArtist} />
-        <p style={styleTitleArtist}>{title}</p>
+        <p className="styleTitleArtist">{title}</p>
       </div>
     </button>
   );

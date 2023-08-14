@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useContext, useEffect } from "react";
-import { styleHeader, styleSearch } from "../assets/style/Header";
+import "../assets/style/Header.css";
 import { SearchContext } from "../hooks/SearchContext";
 import { useSearch } from "../hooks/useSearch";
 import spotifyLogo from "../assets/Images/spotifyLogo.jpeg";
@@ -27,7 +27,7 @@ const Header = () => {
   }, [search]);
 
   return (
-    <div style={styleHeader}>
+    <div className="styleHeader">
       <img
         style={{
           height: "70px",
@@ -40,7 +40,7 @@ const Header = () => {
         type="text"
         value={search.keyword}
         placeholder="Que souhaitez-vous écouter? "
-        style={styleSearch}
+        className="styleSearch"
         title="Search"
         onChange={(e) => searchForKeyWord(e)}
       />

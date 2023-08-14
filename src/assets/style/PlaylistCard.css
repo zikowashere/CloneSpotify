@@ -1,0 +1,15 @@
+.styleFirstDivPlaylistCard {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  justify-content: center;
+}
+.styleImagePlaylistCard {
+  height: 100px;
+  margin-right: 2%;
+}
+.styleTitlePlaylistCard {
+  top: 30%;
+  color: white;
+  width: 100%;
+}
