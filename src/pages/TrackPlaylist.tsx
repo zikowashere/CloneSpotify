@@ -12,7 +12,7 @@ const TrackPlaylist = () => {
   return (
     <div
       style={{
-        width: "100%",
+        width: "70%",
         height: "600px",
         overflowY: "scroll",
       }}
